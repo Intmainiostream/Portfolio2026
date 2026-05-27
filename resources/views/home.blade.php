@@ -189,8 +189,8 @@
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;">
         @php
         $experiences = [
-            ['intermed.png','Intermed LLC Corporation','Lead Developer · 2026 · Hybrid','Developed a full-scale HRIS across 6 modules using Laravel and MySQL. Mentored junior developers and led all technical decisions.'],
-            ['game.png','Tanikala at Laya','Freelance · Game Developer','Side-scroll 2D educational game. Designed and developed core gameplay systems and educational content integration.'],
+            ['intermed.png','Intermed LLC Corporation','Lead Developer · 2026 · Hybrid','Developed a full-scale HRIS across 6 modules using Laravel and MySQL. Contributed to system architecture, feature implementation, and team collaboration during internship development.'],
+            ['game.png','Private Client Project','Freelance · Game Developer','Side-scroll 2D educational game. Designed and developed core gameplay systems and educational content integration.'],
             ['trophy.png','IT Skills Olympics','Android Dev · Game Category · Champion 2025','Competed and won 1st place at the University of Makati — Android game development category.'],
             ['research.png','SikapTala National Competition','Research Presentation · Top 3 · 2026','National Computer Science & IT competition — Top 3 research presentation.'],
         ];
