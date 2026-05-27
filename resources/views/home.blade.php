@@ -74,7 +74,7 @@
 {{-- ── STATS BAR ── --}}
 <section class="reveal" style="border-top:1px solid #1e1e3f;border-bottom:1px solid #1e1e3f;padding:2.5rem 3rem;max-width:1400px;margin:0 auto;">
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:left;">
-        @foreach([['22','Age'],['4+','Projects built'],['2','Awards won'],['2026','Graduate']] as $stat)
+        @foreach([['21','Age'],['4+','Projects built'],['2','Awards won'],['2026','Graduate']] as $stat)
         <div>
             <div style="font-family:'Courier New',monospace;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:#fff;">{{ $stat[0] }}</div>
             <div style="font-family:'Courier New',monospace;font-size:0.75rem;color:#94a3b8;margin-top:4px;">{{ $stat[1] }}</div>
