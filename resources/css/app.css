@@ -21,10 +21,11 @@
 @layer base {
     html { scroll-behavior: smooth; }
     body {
-        background-color: #080818;
-        color: #e2e8f0;
+        background-color: var(--bg);
+        color: var(--text-body);
         font-family: 'Instrument Sans', sans-serif;
         overflow-x: hidden;
+        transition: background-color 0.3s ease, color 0.3s ease;
     }
     ::selection {
         background: #a855f7;
@@ -41,18 +42,18 @@
     .glow-accent-strong {
         box-shadow: 0 0 30px #a855f766, 0 0 80px #a855f722;
     }
-    .text-accent  { color: #a855f7; }
-    .text-muted   { color: #94a3b8; }
-    .bg-card      { background: #0f0f23; border: 1px solid #1e1e3f; }
-    .bg-card-hover:hover { background: #14142b; border-color: #a855f744; }
+    .text-accent  { color: var(--accent); }
+    .text-muted   { color: var(--text-secondary); }
+    .bg-card      { background: var(--card-bg); border: 1px solid var(--card-border); transition: background 0.3s ease, border-color 0.3s ease; }
+    .bg-card-hover:hover { background: var(--card-hover-bg); border-color: var(--card-hover-border); }
 
     .border-accent { border-color: #a855f7; }
 
     .pill-btn {
-        border: 1px solid #a855f7;
+        border: 1px solid var(--accent);
         border-radius: 9999px;
         padding: 0.5rem 1.5rem;
-        color: #a855f7;
+        color: var(--accent);
         font-family: 'Courier New', Courier, monospace;
         font-size: 0.75rem;
         letter-spacing: 0.1em;
@@ -61,11 +62,11 @@
         background: transparent;
     }
     .pill-btn:hover {
-        background: #a855f7;
+        background: var(--accent);
         color: #fff;
     }
     .pill-btn-filled {
-        background: #a855f7;
+        background: var(--accent);
         color: #fff;
         border-radius: 9999px;
         padding: 0.5rem 1.5rem;
@@ -74,9 +75,9 @@
         letter-spacing: 0.1em;
         transition: all 0.3s;
         cursor: pointer;
-        border: 1px solid #a855f7;
+        border: 1px solid var(--accent);
     }
-    .pill-btn-filled:hover { background: #9333ea; }
+    .pill-btn-filled:hover { background: var(--accent-dark); }
 }
 
 /* ── Intro animation ── */
@@ -147,8 +148,8 @@
 /* ── Section fade-in on scroll ── */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
+    transform: translateY(15px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
 }
 .reveal.visible {
     opacity: 1;
@@ -164,7 +165,17 @@
     opacity: 1;
 }
 .project-card:hover {
-    border-color: #a855f744 !important;
+    border-color: var(--card-hover-border) !important;
     transform: translateY(-4px);
     transition: all 0.3s ease;
+}
+
+/* ── Cog caption outline (light mode readability) ── */
+[data-theme="light"] .cog-caption {
+    text-shadow:
+        -1px -1px 0 #fff,
+         1px -1px 0 #fff,
+        -1px  1px 0 #fff,
+         1px  1px 0 #fff,
+         0 0 6px #fff;
 }

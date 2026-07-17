@@ -3,12 +3,71 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+        // Prevent flash of wrong theme before CSS loads
+        (function() {
+            const saved = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
     <title>{{ $title ?? 'Joshua Dela Cruz' }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 <style>
+    :root {
+        --bg: #080818;
+        --text-primary: #ffffff;
+        --text-secondary: #94a3b8;
+        --text-body: #e2e8f0;
+        --accent: #a855f7;
+        --accent-dark: #7c3aed;
+        --name-color: #a855f7;
+        --border: #1e1e3f;
+        --border-light: #2a2a4a;
+        --badge-bg: #2E0047;
+        --badge-text: #d8b4fe;
+        --grad-1: #2E0047;
+        --grad-2: #000847;
+        --nav-bg: rgba(8,8,24,0.8);
+        --card-bg: #0f0f23;
+        --card-border: #1e1e3f;
+        --card-hover-bg: #14142b;
+        --card-hover-border: #a855f744;
+        --card-overlay-1: #2E004733;
+        --card-overlay-2: #00084733;
+        --cog-opacity: 0.4;
+        --footer-shadow: transparent;
+    }
+
+    [data-theme="light"] {
+        --bg: #eae5ee;
+        --text-primary: #1a0b2e;
+        --text-secondary: #6b7280;
+        --text-body: #3f2d5c;
+        --accent: #a855f7;
+        --accent-dark: #9333ea;
+        --name-color: #4c1d95;
+        --border: #e9d8fd;
+        --border-light: #d8b4fe;
+        --badge-bg: #f3e8ff;
+        --badge-text: #7c3aed;
+        --grad-1: #f3e8ff;
+        --grad-2: #ede9fe;
+        --nav-bg: rgba(255,255,255,0.85);
+        --card-bg: #faf5ff;
+        --card-border: #e9d8fd;
+        --card-hover-bg: #f3e8ff;
+        --card-hover-border: #d8b4fe66;
+        --card-overlay-1: #f3e8ff99;
+        --card-overlay-2: #ede9fe99;
+        --cog-opacity: 0.75;
+        --footer-shadow: rgba(76,29,149,0.15);
+    }
+
+    body { background: var(--bg); transition: background 0.3s ease; }
+
     .slide-img { transition: opacity 0.2s ease; }
     .slideshow-wrapper { position:absolute; inset:0; width:100%; height:100%; }
     #card-preview { background: rgba(0,0,0,0.7); inset:0; position:fixed; display:none; z-index:9998; align-items:center; justify-content:center; }
@@ -55,32 +114,21 @@ section:first-of-type > div:last-child > div > div:last-child { width: 180px !im
 <body>
     @yield('content')
 
-    {{-- Floating Professional / Personal pill --}}
-    <div id="floating-pill">
-        <div style="background: #13132a; border: 1px solid #2a2a4a; border-radius: 9999px; padding: 6px; display: flex; gap: 4px;">
-            <a href="/professional"
-               class="{{ request()->is('professional') ? 'pill-btn-filled' : 'pill-btn' }}"
-               style="text-decoration:none; display:inline-block;">
-                Professional
-            </a>
-            <a href="/personal"
-               class="{{ request()->is('personal') ? 'pill-btn-filled' : 'pill-btn' }}"
-               style="text-decoration:none; display:inline-block;">
-                Personal
-            </a>
-        </div>
-    </div>
-
     <script>
-        // Show floating pill after scrolling down
-        const pill = document.getElementById('floating-pill');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                pill.classList.add('visible');
-            } else {
-                pill.classList.remove('visible');
-            }
+        function toggleTheme() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const next = current === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            const btn = document.getElementById('themeToggle');
+            if (btn) btn.textContent = next === 'light' ? '🌙' : '☀️';
+        }
+        window.addEventListener('load', () => {
+            const btn = document.getElementById('themeToggle');
+            if (btn) btn.textContent = document.documentElement.getAttribute('data-theme') === 'light' ? '🌙' : '☀️';
         });
-    </script>
+
+        </script>
 </body>
 </html>
