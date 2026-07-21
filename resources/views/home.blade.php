@@ -9,12 +9,14 @@
 </div>
 
 {{-- ── NAV ── --}}
-<nav style="position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(10px);background:var(--nav-bg);border-bottom:1px solid var(--border);">
+<nav style="position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display:flex;justify-content:flex-end;align-items:center;backdrop-filter:blur(10px);background:var(--nav-bg);border-bottom:1px solid var(--border);">
     
     <div style="display:flex;gap:2rem;align-items:center;">
-        <a href="/professional" style="font-family:'Courier New',monospace;font-size:0.8rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em;">Professional</a>
-        <a href="#contact"      style="font-family:'Courier New',monospace;font-size:0.8rem;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;">Contact</a>
-        <button id="themeToggle" onclick="toggleTheme()" style="width:34px;height:34px;border-radius:50%;border:1px solid var(--border-light);background:transparent;color:var(--text-primary);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:0.95rem;padding:0;">🌙</button>
+        <a href="/home" style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em;">Home</a>
+        <a href="#contact"      style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;">Contact</a>
+        <button id="themeToggle" onclick="toggleTheme()" style="width:34px;height:34px;border-radius:50%;border:1px solid var(--border-light);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+            <img id="themeIcon" src="{{ asset('images/dark-mode.png') }}" style="width:26px;height:26px;object-fit:contain;">
+        </button>
     </div>
 </nav>
 
@@ -47,14 +49,14 @@
         <div id="emailModal" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.5);align-items:center;justify-content:center;padding:1.5rem;" onclick="if(event.target===this)this.style.display='none';">
             <div style="background:var(--card-bg);border:1px solid var(--card-border);border-radius:16px;padding:2rem;max-width:400px;width:100%;position:relative;">
                 <button onclick="document.getElementById('emailModal').style.display='none';" style="position:absolute;top:1.25rem;right:1.25rem;background:none;border:none;color:var(--text-secondary);font-size:1.25rem;cursor:pointer;line-height:1;">×</button>
-                <p style="font-family:'Courier New',monospace;font-size:0.7rem;color:var(--text-secondary);letter-spacing:0.1em;margin-bottom:0.75rem;">GET IN TOUCH</p>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--text-secondary);letter-spacing:0.1em;margin-bottom:0.75rem;">GET IN TOUCH</p>
                 <h3 style="font-family:'Courier New',monospace;font-size:1.5rem;font-weight:700;color:var(--text-primary);margin-bottom:0.75rem;">say hello</h3>
                 <p style="font-family:'Instrument Sans',sans-serif;font-size:0.9rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1.5rem;">For work, collabs, or just to say hi — drop me a line.</p>
                 <div style="display:flex;align-items:center;justify-content:space-between;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:0.75rem 1rem;margin-bottom:0.75rem;">
                     <span style="font-family:'Courier New',monospace;font-size:0.85rem;color:var(--text-primary);">joshua.developerr@gmail.com</span>
                     <button onclick="navigator.clipboard.writeText('joshua.developerr@gmail.com');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500);" style="background:var(--name-color);color:#fff;border:none;border-radius:6px;padding:0.4rem 0.9rem;font-family:'Courier New',monospace;font-size:0.75rem;cursor:pointer;flex-shrink:0;margin-left:0.75rem;">Copy</button>
                 </div>
-                <a href="mailto:joshua.developerr@gmail.com" style="display:block;text-align:center;border:1px solid var(--border-light);border-radius:10px;padding:0.75rem;font-family:'Courier New',monospace;font-size:0.85rem;color:var(--text-primary);text-decoration:none;">Open mail app</a>
+                <a href="mailto:joshua.developerr@gmail.com" style="display:block;text-align:center;border:1px solid var(--border-light);border-radius:10px;padding:0.75rem;font-family:'Instrument Sans',sans-serif;font-size:0.85rem;color:var(--text-primary);text-decoration:none;">Open mail app</a>
             </div>
         </div>
     </div>
@@ -81,7 +83,7 @@
 {{-- ── STATS BAR ── --}}
 <section class="reveal" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 3rem;max-width:1400px;margin:0 auto;">
     <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:left;">
-        @foreach([['21','Age'],['4+','Projects built'],['2','Awards won'],['2026','Graduate']] as $stat)
+        @foreach([['21','Age'],['7+','Projects built'],['2','Awards won'],['2026','Graduate']] as $stat)
         <div>
             <div style="font-family:'Courier New',monospace;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--text-primary);">{{ $stat[0] }}</div>
             <div style="font-family:'Courier New',monospace;font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">{{ $stat[1] }}</div>
@@ -110,16 +112,16 @@
         {{-- Side cards --}}
         <div style="display:flex;flex-direction:column;gap:1.5rem;">
             <div class="bg-card" style="border-radius:16px;padding:1.5rem;flex:1;">
-                <p style="font-family:'Courier New',monospace;font-size:0.9rem;color:var(--text-body);line-height:1.7;">
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.9rem;color:var(--text-body);line-height:1.7;">
                     Developer with a strong interest in game development and interactive systems.
                 </p>
             </div>
             <div class="bg-card" style="border-radius:16px;padding:1.5rem;">
-                <p style="font-family:'Courier New',monospace;font-size:0.7rem;color:var(--text-secondary);margin-bottom:0.75rem;">My primary tech stack</p>
-                <p style="font-family:'Courier New',monospace;font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.75rem;">Laravel, Flutter</p>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--text-secondary);margin-bottom:0.75rem;">My primary tech stack</p>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.75rem;">Laravel, Flutter</p>
                 <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
                     @foreach(['Java','C#','Unity','MySQL','Dart'] as $tech)
-                    <span style="font-family:'Courier New',monospace;font-size:0.7rem;padding:4px 10px;border-radius:6px;background:var(--border);color:var(--text-secondary);">{{ $tech }}</span>
+                    <span style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;padding:4px 10px;border-radius:6px;background:var(--border);color:var(--text-secondary);">{{ $tech }}</span>
                     @endforeach
                 </div>
             </div>
@@ -132,7 +134,7 @@
     <h2 style="font-family:'Courier New',monospace;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--text-primary);text-align:center;margin-bottom:0.5rem;">
         A small selection of <span style="color:var(--name-color);">recent projects</span>
     </h2>
-    <p style="font-family:'Courier New',monospace;font-size:0.8rem;color:var(--text-secondary);text-align:center;margin-bottom:3rem;">click to preview · click image to cycle · click image to close</p>
+   
 
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;">
         @php
@@ -169,17 +171,17 @@
                 @endif
                 {{-- Hover overlay --}}
                 <div class="project-overlay" style="position:absolute;inset:0;background:#a855f722;backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;">
-                    <span style="font-family:'Courier New',monospace;font-size:0.75rem;color:#fff;border:1px solid #fff;padding:6px 16px;border-radius:9999px;">{{ $project[2] }}</span>
+                    <span style="font-family:'Instrument Sans',sans-serif;font-size:0.75rem;color:#fff;border:1px solid #fff;padding:6px 16px;border-radius:9999px;">{{ $project[2] }}</span>
                 </div>
                 {{-- Replace div above with actual <img> later --}}
             </div>
             {{-- Info --}}
             <div style="padding:1.5rem;">
-                <h3 style="font-family:'Courier New',monospace;font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;">{{ $project[0] }}</h3>
-                <p style="font-family:'Courier New',monospace;font-size:0.8rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1rem;">{{ $project[1] }}</p>
+                <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;">{{ $project[0] }}</h3>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1rem;">{{ $project[1] }}</p>
                 <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
                     @foreach(explode(' · ',$project[3]) as $tech)
-                    <span style="font-family:'Courier New',monospace;font-size:0.65rem;padding:3px 10px;border-radius:9999px;background:var(--border);color:var(--text-secondary);border:1px solid var(--border-light);">{{ $tech }}</span>
+                    <span style="font-family:'Instrument Sans',sans-serif;font-size:0.65rem;padding:3px 10px;border-radius:9999px;background:var(--border);color:var(--text-secondary);border:1px solid var(--border-light);">{{ $tech }}</span>
                     @endforeach
                 </div>
             </div>
@@ -208,9 +210,9 @@
                 <img src="{{ asset('images/' . $exp[0]) }}" loading="lazy" decoding="async" width="48" height="48" style="width:100%;height:100%;object-fit:contain;">
             </div>
             <div>
-                <h3 style="font-family:'Courier New',monospace;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">{{ $exp[1] }}</h3>
-                <p style="font-family:'Courier New',monospace;font-size:0.7rem;color:var(--accent);margin-bottom:0.75rem;letter-spacing:0.05em;">{{ $exp[2] }}</p>
-                <p style="font-family:'Courier New',monospace;font-size:0.8rem;color:var(--text-secondary);line-height:1.7;">{{ $exp[3] }}</p>
+                <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">{{ $exp[1] }}</h3>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--accent);margin-bottom:0.75rem;letter-spacing:0.05em;">{{ $exp[2] }}</p>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--text-secondary);line-height:1.7;">{{ $exp[3] }}</p>
             </div>
         </div>
         @endforeach
@@ -220,20 +222,20 @@
 {{-- ── EDUCATION ── --}}
 <section class="reveal" style="padding:5rem 3rem;max-width:1400px;margin:0 auto;">
     <h2 style="font-family:'Courier New',monospace;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--text-primary);text-align:center;margin-bottom:3rem;">
-        🎓 <span style="color:var(--name-color);">Education</span>
+        <span style="color:var(--name-color);">Education</span>
     </h2>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:800px;margin:0 auto;">
         <div class="bg-card" style="border-radius:16px;padding:2rem;">
-            <h3 style="font-family:'Courier New',monospace;font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;">BS Information Technology</h3>
-            <p style="font-family:'Courier New',monospace;font-size:0.75rem;color:var(--accent);margin-bottom:1rem;">Sep 2022 – Jun 2026</p>
-            <p style="font-family:'Courier New',monospace;font-size:0.8rem;color:var(--text-secondary);">Urdaneta City University<br>Urdaneta City, Pangasinan</p>
+            <h3 style="font-family:'Instrument Sans',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;">BS Information Technology</h3>
+            <p style="font-family:'Instrument Sans',sans-serif;font-size:0.75rem;color:var(--accent);margin-bottom:1rem;">Sep 2022 – Jun 2026</p>
+            <p style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--text-secondary);">Urdaneta City University<br>Urdaneta City, Pangasinan</p>
         </div>
         <div class="bg-card" style="border-radius:16px;padding:2rem;border-color:#a855f733 !important;">
-            <h3 style="font-family:'Courier New',monospace;font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;">Skills</h3>
-            <p style="font-family:'Courier New',monospace;font-size:0.7rem;color:var(--accent);margin-bottom:1rem;">Languages & Tools</p>
+            <h3 style="font-family:'Instrument Sans',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;">Skills</h3>
+            <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--accent);margin-bottom:1rem;">Languages & Tools</p>
             <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
                 @foreach(['Java','Dart','C#','C++','Python','SQL','JS','Flutter','HTML','CSS','Unity','Figma','Blender','Git'] as $s)
-                <span style="font-family:'Courier New',monospace;font-size:0.65rem;padding:3px 9px;border-radius:9999px;background:var(--badge-bg);color:var(--badge-text);border:1px solid #a855f733;">{{ $s }}</span>
+                <span style="font-family:'Instrument Sans',sans-serif;font-size:0.65rem;padding:3px 9px;border-radius:9999px;background:var(--badge-bg);color:var(--badge-text);border:1px solid #a855f733;">{{ $s }}</span>
                 @endforeach
             </div>
         </div>
@@ -245,17 +247,17 @@
   <h2 style="font-family:'Courier New',monospace;font-size:clamp(2rem,4vw,3.5rem);font-weight:700;color:var(--text-primary);margin-bottom:1rem;">
         Let's <span style="color:var(--name-color);">Talk</span>
     </h2>
-    <p style="font-family:'Courier New',monospace;font-size:0.85rem;color:var(--text-secondary);max-width:600px;margin:0 auto 2.5rem;">
+    <p style="font-family:'Instrument Sans',sans-serif;font-size:0.85rem;color:var(--text-secondary);max-width:600px;margin:0 auto 2.5rem;">
         Looking for a developer? Want to collaborate? I'd love to hear from you.
     </p>
     <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
         <button onclick="navigator.clipboard.writeText('joshua.developerr@gmail.com').then(()=>{this.textContent='✓ Copied!';setTimeout(()=>this.textContent='Copy my email address',2000)})"
-            class="pill-btn" style="display:flex;align-items:center;gap:8px;font-size:0.8rem;padding:0.75rem 1.75rem;color:var(--name-color);border-color:var(--name-color);"
+            class="pill-btn" style="display:flex;align-items:center;gap:8px;font-family:'Instrument Sans',sans-serif;font-size:0.8rem;padding:0.75rem 1.75rem;color:var(--name-color);border-color:var(--name-color);"
             onmouseover="this.style.background='#a855f7';this.style.borderColor='#a855f7';this.style.color='#fff';"
             onmouseout="this.style.background='transparent';this.style.borderColor='var(--name-color)';this.style.color='var(--name-color)';">
             Copy my email address
         </button>
-        <a href="https://linkedin.com/in/joshua-dev-cruzz" target="_blank" class="pill-btn-filled" style="text-decoration:none;font-size:0.8rem;padding:0.75rem 1.75rem;background:var(--name-color);border-color:var(--name-color);"
+        <a href="https://linkedin.com/in/joshua-dev-cruzz" target="_blank" class="pill-btn-filled" style="text-decoration:none;font-family:'Instrument Sans',sans-serif;font-size:0.8rem;padding:0.75rem 1.75rem;background:var(--name-color);border-color:var(--name-color);"
             onmouseover="this.style.background='#a855f7';this.style.borderColor='#a855f7';"
             onmouseout="this.style.background='var(--name-color)';this.style.borderColor='var(--name-color)';">
             LinkedIn ↗
@@ -267,7 +269,7 @@
 <footer style="border-top:1px solid var(--border);box-shadow:0 -1px 0 var(--footer-shadow);padding:1.75rem 3rem;max-width:1400px;margin:0 auto;display:flex;flex-direction:column;align-items:center;">
     <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.75rem;width:100%;max-width:640px;margin-bottom:0.75rem;">
         <p style="font-family:'Courier New',monospace;font-size:0.9rem;color:var(--text-primary);font-weight:700;letter-spacing:0.02em;">Contributions in the last year</p>
-        <a href="https://github.com/Intmainiostream" target="_blank" style="font-family:'Courier New',monospace;font-size:0.65rem;color:var(--text-secondary);text-decoration:none;">@Intmainiostream ↗</a>
+        <a href="https://github.com/Intmainiostream" target="_blank" style="font-family:'Instrument Sans',sans-serif;font-size:0.65rem;color:var(--text-secondary);text-decoration:none;">@Intmainiostream ↗</a>
     </div>
 
     {{-- GitHub contributions --}}
@@ -471,7 +473,7 @@ document.querySelectorAll('.project-card').forEach(card => {
 
         container.innerHTML = `<svg width="100%" viewBox="0 0 ${w} ${h}" style="overflow:visible;">${dots}</svg>`;
     } catch (e) {
-        container.innerHTML = `<p style="font-family:'Courier New',monospace;font-size:0.7rem;color:var(--text-secondary);">Couldn't load contributions.</p>`;
+        container.innerHTML = `<p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--text-secondary);">Couldn't load contributions.</p>`;
     }
 })();
 </script>

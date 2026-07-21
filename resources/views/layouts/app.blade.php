@@ -68,6 +68,16 @@
 
     body { background: var(--bg); transition: background 0.3s ease; }
 
+    [data-theme="light"] body {
+        background-image: radial-gradient(circle, #d8b4fe55 1px, transparent 1px);
+        background-size: 22px 22px;
+    }
+
+    [data-theme="dark"] body {
+        background-image: radial-gradient(circle, #ffffff0d 1px, transparent 1px);
+        background-size: 24px 24px;
+    }
+
     .slide-img { transition: opacity 0.2s ease; }
     .slideshow-wrapper { position:absolute; inset:0; width:100%; height:100%; }
     #card-preview { background: rgba(0,0,0,0.7); inset:0; position:fixed; display:none; z-index:9998; align-items:center; justify-content:center; }
@@ -95,7 +105,7 @@
         section:first-of-type > div:last-child { display: flex !important; justify-content: center; }
 section:first-of-type > div:last-child > div { width: 180px !important; height: 180px !important; }
 section:first-of-type > div:last-child > div > div:last-child { width: 180px !important; height: 180px !important; }
-        section:first-of-type > div:first-child > div[style*="display:flex;gap:1rem"] { justify-content: center !important; }
+        section:first-of-type > div:first-child > div[style*="gap:1.25rem"] { justify-content: center !important; }
 
         /* Stats bar — 2 columns */
         div[style*="repeat(4,1fr)"] { grid-template-columns: repeat(2,1fr) !important; }
@@ -121,12 +131,12 @@ section:first-of-type > div:last-child > div > div:last-child { width: 180px !im
             const next = current === 'light' ? 'dark' : 'light';
             html.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
-            const btn = document.getElementById('themeToggle');
-            if (btn) btn.textContent = next === 'light' ? '🌙' : '☀️';
+            const icon = document.getElementById('themeIcon');
+            if (icon) icon.src = next === 'light' ? '{{ asset("images/dark-mode.png") }}' : '{{ asset("images/light-mode.png") }}';
         }
         window.addEventListener('load', () => {
-            const btn = document.getElementById('themeToggle');
-            if (btn) btn.textContent = document.documentElement.getAttribute('data-theme') === 'light' ? '🌙' : '☀️';
+            const icon = document.getElementById('themeIcon');
+            if (icon) icon.src = document.documentElement.getAttribute('data-theme') === 'light' ? '{{ asset("images/dark-mode.png") }}' : '{{ asset("images/light-mode.png") }}';
         });
 
         </script>

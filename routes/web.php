@@ -8,5 +8,5 @@ Route::get('/personal', function () {
     return view('personal');
 });
 Route::get('/professional', function () {
-    return view('professional');
+    return view('home');
 });
