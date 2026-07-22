@@ -7,6 +7,9 @@ Route::get('/', function () {
 Route::get('/personal', function () {
     return view('personal');
 });
+Route::get('/stack', function () {
+    return view('stack');
+});
 Route::get('/professional', function () {
     return view('home');
 });

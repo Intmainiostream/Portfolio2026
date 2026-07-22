@@ -12,8 +12,10 @@
 <nav style="position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display:flex;justify-content:flex-end;align-items:center;backdrop-filter:blur(10px);background:var(--nav-bg);border-bottom:1px solid var(--border);">
     
     <div style="display:flex;gap:2rem;align-items:center;">
-        <a href="/home" style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--accent);text-decoration:none;letter-spacing:0.05em;">Home</a>
-        <a href="#contact"      style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;">Contact</a>
+        <a href="/" id="navHome" data-section="hero" onclick="if(window.location.pathname==='/'){window.scrollTo({top:0,behavior:'instant'});return false;}" style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;font-weight:400;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;display:inline-block;transition:font-size 0.25s ease,font-weight 0.25s ease,color 0.25s ease;">Home</a>
+        <a href="#about" id="navAbout" data-section="about"      style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;font-weight:400;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;display:inline-block;transition:font-size 0.25s ease,font-weight 0.25s ease,color 0.25s ease;">About</a>
+        <a href="/stack" style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;font-weight:400;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;">Stack</a>
+        <a href="#contact" id="navContact" data-section="contact"      style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;font-weight:400;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;display:inline-block;transition:font-size 0.25s ease,font-weight 0.25s ease,color 0.25s ease;">Contact</a>
         <button id="themeToggle" onclick="toggleTheme()" style="width:34px;height:34px;border-radius:50%;border:1px solid var(--border-light);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
             <img id="themeIcon" src="{{ asset('images/dark-mode.png') }}" style="width:26px;height:26px;object-fit:contain;">
         </button>
@@ -21,7 +23,7 @@
 </nav>
 
 {{-- ── HERO ── --}}
-<section style="min-height:100vh;display:flex;align-items:center;padding:0 3rem;padding-top:5rem;max-width:1400px;margin:0 auto;gap:4rem;">
+<section id="hero" style="min-height:100vh;display:flex;align-items:center;padding:0 3rem;padding-top:5rem;max-width:1400px;margin:0 auto;gap:4rem;">
 
     {{-- Left --}}
     <div style="flex:1;">
@@ -82,8 +84,8 @@
 
 {{-- ── STATS BAR ── --}}
 <section class="reveal" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:2.5rem 3rem;max-width:1400px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:left;">
-        @foreach([['21','Age'],['7+','Projects built'],['2','Awards won'],['2026','Graduate']] as $stat)
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;text-align:center;">
+        @foreach([['21','Age'],['7+','Projects built'],['2026','Graduate']] as $stat)
         <div>
             <div style="font-family:'Courier New',monospace;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--text-primary);">{{ $stat[0] }}</div>
             <div style="font-family:'Courier New',monospace;font-size:0.75rem;color:var(--text-secondary);margin-top:4px;">{{ $stat[1] }}</div>
@@ -93,9 +95,9 @@
 </section>
 
 {{-- ── SHORT PROFILE ── --}}
-<section class="reveal" style="padding:5rem 3rem;max-width:1400px;margin:0 auto;">
+<section id="about" class="reveal" style="padding:5rem 3rem;max-width:1400px;margin:0 auto;">
     <h2 style="font-family:'Courier New',monospace;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--text-primary);text-align:center;margin-bottom:3rem;">Short Profile</h2>
-    <div style="display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;">
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:1.5rem;margin-bottom:1.5rem;">
         {{-- Main card --}}
         <div class="bg-card" style="border-radius:16px;padding:2rem;position:relative;overflow:hidden;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;">
             <div style="position:absolute;inset:0;background:linear-gradient(135deg,var(--card-overlay-1),var(--card-overlay-2));border-radius:16px;"></div>
@@ -105,32 +107,68 @@
             </div>
             <div style="position:relative;z-index:1;">
                 <p class="cog-caption" style="font-family:'Courier New',monospace;font-size:1.1rem;font-weight:700;color:var(--text-primary);line-height:1.6;">
-                    Building games, apps,<br>and everything in between
+                    Where ideas become software,<br>and imagination becomes interactive gameplay.
                 </p>
             </div>
         </div>
         {{-- Side cards --}}
         <div style="display:flex;flex-direction:column;gap:1.5rem;">
+            {{-- Stack card --}}
             <div class="bg-card" style="border-radius:16px;padding:1.5rem;flex:1;">
-                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.9rem;color:var(--text-body);line-height:1.7;">
-                    Developer with a strong interest in game development and interactive systems.
-                </p>
-            </div>
-            <div class="bg-card" style="border-radius:16px;padding:1.5rem;">
-                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--text-secondary);margin-bottom:0.75rem;">My primary tech stack</p>
-                <p style="font-family:'Instrument Sans',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.75rem;">Laravel, Flutter</p>
+                <div style="margin-bottom:0.5rem;">
+                    <h3 style="font-family:'Instrument Sans',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text-primary);">Stack</h3>
+                </div>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--accent);margin-bottom:1rem;">Languages & Tools</p>
                 <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-                    @foreach(['Java','C#','Unity','MySQL','Dart'] as $tech)
-                    <span style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;padding:4px 10px;border-radius:6px;background:var(--border);color:var(--text-secondary);">{{ $tech }}</span>
+                    @foreach(['Java','C#','PHP','Python','Dart'] as $tech)
+                    <span style="font-family:'Instrument Sans',sans-serif;font-size:0.65rem;padding:3px 9px;border-radius:9999px;background:var(--badge-bg);color:var(--badge-text);border:1px solid #a855f733;">{{ $tech }}</span>
+                    @endforeach
+                    <a href="/stack" style="font-family:'Instrument Sans',sans-serif;font-size:0.65rem;padding:3px 9px;border-radius:9999px;color:var(--text-secondary);text-decoration:none;border:1px dashed var(--border-light);">+ More</a>
+                </div>
+            </div>
+            {{-- Beyond Code card --}}
+            <div class="bg-card" style="border-radius:16px;padding:1.5rem;flex:1;">
+                <div style="margin-bottom:0.5rem;">
+                    <h3 style="font-family:'Instrument Sans',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text-primary);">Beyond Code</h3>
+                </div>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--accent);margin-bottom:1rem;">Interests & Hobbies</p>
+                <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                    @foreach(['Game Jams','Creative Writing','Unity Projects','Gaming'] as $interest)
+                    <span style="font-family:'Instrument Sans',sans-serif;font-size:0.65rem;padding:3px 9px;border-radius:9999px;background:var(--badge-bg);color:var(--badge-text);border:1px solid #a855f733;">{{ $interest }}</span>
                     @endforeach
                 </div>
             </div>
         </div>
     </div>
+
+    {{-- Award cards --}}
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;">
+        <div class="bg-card bg-card-hover" style="border-radius:16px;padding:1.75rem;display:flex;gap:1.25rem;align-items:flex-start;transition:all 0.3s;">
+            <div style="flex-shrink:0;margin-top:2px;width:48px;height:48px;">
+                <img src="{{ asset('images/trophy.webp') }}" loading="lazy" decoding="async" width="48" height="48" style="width:100%;height:100%;object-fit:contain;">
+            </div>
+            <div>
+                <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">IT Skills Olympics</h3>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--accent);margin-bottom:0.75rem;letter-spacing:0.05em;">Android Dev · Game Category · Champion 2025</p>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--text-secondary);line-height:1.7;">Competed and won 1st place at the University of Makati — Android game development category.</p>
+            </div>
+        </div>
+        <div class="bg-card bg-card-hover" style="border-radius:16px;padding:1.75rem;display:flex;gap:1.25rem;align-items:flex-start;transition:all 0.3s;">
+            <div style="flex-shrink:0;margin-top:2px;width:48px;height:48px;">
+                <img src="{{ asset('images/research.webp') }}" loading="lazy" decoding="async" width="48" height="48" style="width:100%;height:100%;object-fit:contain;">
+            </div>
+            <div>
+                <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">SikapTala National Competition</h3>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--accent);margin-bottom:0.75rem;letter-spacing:0.05em;">Research Presentation · Top 3 · 2026</p>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--text-secondary);line-height:1.7;">National Computer Science & IT competition — Top 3 research presentation.</p>
+            </div>
+        </div>
+    </div>
+    <p style="font-family:'Courier New',monospace;font-size:1rem;font-weight:500;font-style:italic;color:var(--text-secondary);text-align:center;margin-top:2.5rem;letter-spacing:0.05em;">"Ad astra abyssosque!"</p>
 </section>
 
 {{-- ── PROJECTS ── --}}
-<section id="projects" class="reveal" style="padding:5rem 3rem;max-width:1400px;margin:0 auto;">
+<section id="projects" class="reveal" style="padding:5rem 3rem;padding-top:8rem;max-width:1400px;margin:0 auto;">
     <h2 style="font-family:'Courier New',monospace;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--text-primary);text-align:center;margin-bottom:0.5rem;">
         A small selection of <span style="color:var(--name-color);">recent projects</span>
     </h2>
@@ -268,7 +306,7 @@
 {{-- ── FOOTER ── --}}
 <footer style="border-top:1px solid var(--border);box-shadow:0 -1px 0 var(--footer-shadow);padding:1.75rem 3rem;max-width:1400px;margin:0 auto;display:flex;flex-direction:column;align-items:center;">
     <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:0.75rem;width:100%;max-width:640px;margin-bottom:0.75rem;">
-        <p style="font-family:'Courier New',monospace;font-size:0.9rem;color:var(--text-primary);font-weight:700;letter-spacing:0.02em;">Contributions in the last year</p>
+        <p style="font-family:'Courier New',monospace;font-size:0.9rem;color:var(--text-primary);font-weight:700;letter-spacing:0.02em;">Contributions in the past year</p>
         <a href="https://github.com/Intmainiostream" target="_blank" style="font-family:'Instrument Sans',sans-serif;font-size:0.65rem;color:var(--text-secondary);text-decoration:none;">@Intmainiostream ↗</a>
     </div>
 
@@ -381,6 +419,24 @@ window.addEventListener('load', () => {
     animate();
 });
 
+// Active nav tracking
+const navLinks = document.querySelectorAll('[data-section]');
+const navSections = ['hero','about','contact'].map(id => document.getElementById(id)).filter(Boolean);
+function setActiveNav(id) {
+    navLinks.forEach(link => {
+        const active = link.dataset.section === id;
+        link.style.fontSize = active ? '0.95rem' : '0.8rem';
+        link.style.fontWeight = active ? '700' : '400';
+        link.style.color = active ? 'var(--accent)' : 'var(--text-body)';
+    });
+}
+const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+        if (e.isIntersecting) setActiveNav(e.target.id);
+    });
+}, { threshold: 0.4, rootMargin: '-80px 0px -40% 0px' });
+navSections.forEach(s => navObserver.observe(s));
+
 // Scroll reveal
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
@@ -467,7 +523,7 @@ document.querySelectorAll('.project-card').forEach(card => {
                 const t = d.count === 0 ? 0 : Math.min(d.count / maxCount, 1);
                 const r = minR + t * (maxR - minR);
                 const opacity = d.count === 0 ? 0.25 : 1;
-                dots += `<circle cx="${wi * (cell + gap) + cell/2}" cy="${dow * (cell + gap) + cell/2}" r="${r}" fill="var(--text-primary)" opacity="${opacity}"></circle>`;
+                dots += `<rect x="${wi * (cell + gap) + cell/2 - r}" y="${dow * (cell + gap) + cell/2 - r}" width="${r*2}" height="${r*2}" fill="var(--text-primary)" opacity="${opacity}" transform="rotate(45 ${wi * (cell + gap) + cell/2} ${dow * (cell + gap) + cell/2})"></rect>`;
             });
         });
 

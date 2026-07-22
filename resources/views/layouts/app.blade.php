@@ -17,6 +17,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 <style>
     :root {
+        --card-shadow: none;
+        --home-link-color: var(--accent);
         --bg: #080818;
         --text-primary: #ffffff;
         --text-secondary: #94a3b8;
@@ -42,11 +44,13 @@
     }
 
     [data-theme="light"] {
+        --card-shadow: 0 4px 16px rgba(76,29,149,0.08), 0 1px 4px rgba(76,29,149,0.06);
+        --home-link-color: var(--name-color);
         --bg: #eae5ee;
         --text-primary: #1a0b2e;
         --text-secondary: #6b7280;
         --text-body: #3f2d5c;
-        --accent: #a855f7;
+        --accent: #4c1d95;
         --accent-dark: #9333ea;
         --name-color: #4c1d95;
         --border: #e9d8fd;
@@ -70,7 +74,7 @@
 
     [data-theme="light"] body {
         background-image: radial-gradient(circle, #d8b4fe55 1px, transparent 1px);
-        background-size: 22px 22px;
+        background-size: 24px 24px;
     }
 
     [data-theme="dark"] body {
@@ -132,11 +136,11 @@ section:first-of-type > div:last-child > div > div:last-child { width: 180px !im
             html.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
             const icon = document.getElementById('themeIcon');
-            if (icon) icon.src = next === 'light' ? '{{ asset("images/dark-mode.png") }}' : '{{ asset("images/light-mode.png") }}';
+            if (icon) icon.src = next === 'light' ? '{{ asset("images/dark-mode.png") }}' : '{{ asset("images/light-mode_white.png") }}';
         }
         window.addEventListener('load', () => {
             const icon = document.getElementById('themeIcon');
-            if (icon) icon.src = document.documentElement.getAttribute('data-theme') === 'light' ? '{{ asset("images/dark-mode.png") }}' : '{{ asset("images/light-mode.png") }}';
+            if (icon) icon.src = document.documentElement.getAttribute('data-theme') === 'light' ? '{{ asset("images/dark-mode.png") }}' : '{{ asset("images/light-mode_white.png") }}';
         });
 
         </script>
