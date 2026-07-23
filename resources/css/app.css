@@ -45,7 +45,7 @@
     .text-accent  { color: var(--accent); }
     .text-muted   { color: var(--text-secondary); }
     .bg-card      { background: var(--card-bg); border: 1px solid var(--card-border); box-shadow: var(--card-shadow); transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
-    .bg-card-hover:hover { background: var(--card-hover-bg); border-color: var(--card-hover-border); }
+    .award-card-active { cursor: default !important; }
 
     .border-accent { border-color: #a855f7; }
 
@@ -170,7 +170,7 @@
     transition: all 0.3s ease;
 }
 
-/* ── Cog caption outline (light mode readability) ── */
+
 [data-theme="light"] .cog-caption {
     text-shadow:
         -1px -1px 0 #fff,
@@ -178,4 +178,12 @@
         -1px  1px 0 #fff,
          1px  1px 0 #fff,
          0 0 6px #fff;
+}
+
+[data-theme="light"] .award-img-wrap {
+    border: 1.5px solid #4c1d95;
+}
+
+[data-theme="light"] .award-eye-icon {
+    stroke: #4c1d95;
 }

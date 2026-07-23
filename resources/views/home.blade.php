@@ -238,14 +238,14 @@
         $experiences = [
             ['intermed.webp','Intermed LLC Corporation','Lead Developer · 2026 · Hybrid','Developed a full-scale HRIS across 6 modules using Laravel and MySQL. Contributed to system architecture, feature implementation, and team collaboration during internship development.'],
             ['game.webp','Private Client Project','Freelance · Game Developer','Side-scroll 2D educational game. Designed and developed core gameplay systems and educational content integration.'],
-            ['trophy.webp','IT Skills Olympics','Android Dev · Game Category · Champion 2025','Competed and won 1st place at the University of Makati — Android game development category.'],
-            ['research.webp','SikapTala National Competition','Research Presentation · Top 3 · 2026','National Computer Science & IT competition — Top 3 research presentation.'],
+            ['laptop.png','SQNHS STE Enrollment System','Freelance · Full Stack Developer','Built a school enrollment and grading system for San Quintin National High School\'s STE program using Laravel, Tailwind CSS, and Alpine.js.'],
+            ['laptop.png','SQNHS Repository System','Freelance · Full Stack Developer','Developed a document management system for uploading, organizing, and retrieving school files by year and category.'],
         ];
         @endphp
         @foreach($experiences as $exp)
         <div class="bg-card bg-card-hover" style="border-radius:16px;padding:1.75rem;display:flex;gap:1.25rem;align-items:flex-start;transition:all 0.3s;">
-            <div style="flex-shrink:0;margin-top:2px;width:48px;height:48px;">
-                <img src="{{ asset('images/' . $exp[0]) }}" loading="lazy" decoding="async" width="48" height="48" style="width:100%;height:100%;object-fit:contain;">
+            <div style="flex-shrink:0;margin-top:2px;width:40px;height:40px;">
+                <img src="{{ asset('images/' . $exp[0]) }}" loading="lazy" decoding="async" width="40" height="40" style="width:100%;height:100%;object-fit:contain;">
             </div>
             <div>
                 <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">{{ $exp[1] }}</h3>
@@ -262,22 +262,93 @@
     <h2 style="font-family:'Courier New',monospace;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--text-primary);text-align:center;margin-bottom:3rem;">
         <span style="color:var(--name-color);">Education</span>
     </h2>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:800px;margin:0 auto;">
+
+    {{-- BS Info --}}
+    <div style="max-width:500px;margin:0 auto 4rem;">
         <div class="bg-card" style="border-radius:16px;padding:2rem;">
             <h3 style="font-family:'Instrument Sans',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;">BS Information Technology</h3>
             <p style="font-family:'Instrument Sans',sans-serif;font-size:0.75rem;color:var(--accent);margin-bottom:1rem;">Sep 2022 – Jun 2026</p>
             <p style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--text-secondary);">Urdaneta City University<br>Urdaneta City, Pangasinan</p>
         </div>
-        <div class="bg-card" style="border-radius:16px;padding:2rem;border-color:#a855f733 !important;">
-            <h3 style="font-family:'Instrument Sans',sans-serif;font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;">Skills</h3>
-            <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--accent);margin-bottom:1rem;">Languages & Tools</p>
-            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
-                @foreach(['Java','Dart','C#','C++','Python','SQL','JS','Flutter','HTML','CSS','Unity','Figma','Blender','Git'] as $s)
-                <span style="font-family:'Instrument Sans',sans-serif;font-size:0.65rem;padding:3px 9px;border-radius:9999px;background:var(--badge-bg);color:var(--badge-text);border:1px solid #a855f733;">{{ $s }}</span>
-                @endforeach
-            </div>
-        </div>
     </div>
+
+    {{-- Awards carousel --}}
+    <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;font-weight:600;color:var(--text-secondary);letter-spacing:0.12em;text-transform:uppercase;text-align:center;margin-bottom:2rem;">Awards & Recognition</p>
+
+    @php
+    $eduAwards = [
+        ['IT Skills Olympics','Android Dev · Game Category · Champion 2025','umak.png'],
+        ['SikapTala National Competition','Research Presentation · Top 3 · 2026','research_award.png'],
+        ['SikapTala National Competition','Game Jam · Top 10 · 2026','gamejam.png'],
+        ['Academic Distinction Award','Urdaneta City University','academic_distinction.png'],
+        ['Special Achievement Award','Urdaneta City University','special_award.png'],
+        ['Proficiency On-the-Job Training Award','Medisource Intermed LLC','ojt.png'],
+    ];
+    @endphp
+
+    <div style="position:relative;max-width:600px;margin:0 auto;overflow:visible;">
+        <div id="awardsStage" style="position:relative;height:460px;overflow:visible;">
+            @foreach($eduAwards as $i => $aw)
+            <div class="award-card bg-card" data-index="{{ $i }}" style="position:absolute;top:0;left:50%;width:380px;border-radius:16px;padding:1.5rem;transition:transform 0.4s ease,opacity 0.4s ease,top 0.4s ease;box-shadow:0 20px 40px rgba(0,0,0,0.35);">
+                <div class="award-img-wrap" style="width:100%;height:200px;border-radius:10px;overflow:hidden;margin-bottom:1rem;background:var(--badge-bg);">
+                    @if($aw[2])
+                    <img src="{{ asset('images/' . $aw[2]) }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">
+                    @endif
+                </div>
+                <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;line-height:1.4;">{{ $aw[0] }}</h3>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;">
+                    <p style="font-family:'Instrument Sans',sans-serif;font-size:0.75rem;color:var(--accent);letter-spacing:0.03em;">{{ $aw[1] }}</p>
+                    @if($aw[2])
+                    <svg class="award-eye-icon" onclick="openAwardPreview(event, '{{ asset('images/' . $aw[2]) }}')" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;cursor:pointer;">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8Z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    @endif
+                </div>
+            </div>
+            @endforeach
+        </div>
+
+        
+    </div>
+
+    <script>
+        let awardIndex = 0;
+        const awardCards = document.querySelectorAll('.award-card');
+
+        function updateAwardCarousel() {
+            const n = awardCards.length;
+            awardCards.forEach((card, i) => {
+                let offset = i - awardIndex;
+                if (offset > n / 2) offset -= n;
+                if (offset < -n / 2) offset += n;
+                const abs = Math.abs(offset);
+                const dir = Math.sign(offset);
+                card.style.transform = `translateX(calc(-50% + ${offset * 55 + dir * Math.max(0, abs - 1) * 45}px)) scale(${1 - abs * 0.08}) rotate(${dir * (8 + abs * 2)}deg)`;
+                const baseTop = abs * 22;
+                card.style.top = `${baseTop}px`;
+                card.style.zIndex = 10 - abs;
+                card.style.opacity = abs > 2 ? 0 : (abs === 2 ? 0.3 : 1 - abs * 0.25);
+                card.style.pointerEvents = 'auto';
+                card.classList.toggle('award-card-active', abs === 0);
+                card.onclick = abs === 0 ? null : (dir < 0 ? awardPrev : awardNext);
+                card.onmouseenter = abs === 0 ? null : () => { card.style.top = `${baseTop - 16}px`; };
+                card.onmouseleave = abs === 0 ? null : () => { card.style.top = `${baseTop}px`; };
+            });
+        }
+        function awardPrev() { awardIndex = (awardIndex - 1 + awardCards.length) % awardCards.length; updateAwardCarousel(); }
+        function awardNext() { awardIndex = (awardIndex + 1) % awardCards.length; updateAwardCarousel(); }
+
+        function openAwardPreview(event, src) {
+            event.stopPropagation();
+            activeImages = [src];
+            activeIndex = 0;
+            previewImg.src = src;
+            previewEl.style.display = 'flex';
+        }
+
+        updateAwardCarousel();
+    </script>
 </section>
 
 {{-- ── CONTACT ── --}}
