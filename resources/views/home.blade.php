@@ -168,65 +168,111 @@
 </section>
 
 {{-- ── PROJECTS ── --}}
-<section id="projects" class="reveal" style="padding:5rem 3rem;padding-top:8rem;max-width:1400px;margin:0 auto;">
-    <h2 style="font-family:'Courier New',monospace;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:var(--text-primary);text-align:center;margin-bottom:0.5rem;">
-        A small selection of <span style="color:var(--name-color);">recent projects</span>
-    </h2>
-   
+<section id="projects" class="reveal" style="padding:5rem 3rem;padding-top:8rem;max-width:1000px;margin:0 auto;">
 
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;">
-        @php
-        $projects = [
-            ['RoboFrontier','A game-based robotics learning RPG — capstone project','Senior Programmer','Unity · C# · Android','🎮'],
-            ['TechBite','Fast food e-commerce mobile app','Developer','Android Studio · Java',''],
-            ['MiDas','Concept lending app where interest goes to charity','Developer','Flutter · Dart','💸'],
-            ['PawPal','Frontend for a pet care services startup web app','Frontend Dev','HTML · CSS · JavaScript','🐾'],
-        ];
-        @endphp
+    {{-- Header row --}}
+    <div style="display:flex;justify-content:flex-end;align-items:baseline;margin-bottom:3.5rem;">
+        <a href="/projects" style="font-family:'Courier New',monospace;font-size:0.75rem;color:var(--text-secondary);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-secondary)'">All Projects →</a>
+    </div>
 
-        @foreach($projects as $project)
-        <div class="project-card bg-card" style="border-radius:16px;overflow:hidden;cursor:default;transition:all 0.3s;border:1px solid var(--border);">
-            {{-- Image placeholder --}}
-            <div style="position:relative;height:320px;background:linear-gradient(135deg,#2E0047,#000847);display:flex;align-items:center;justify-content:center;overflow:hidden;">
-                @if($project[0] === 'RoboFrontier')
-                <div class="slideshow-wrapper" data-images="{{ asset('images/RF1.png') }},{{ asset('images/RF2.png') }},{{ asset('images/RF3.png') }}">
-                    <img class="slide-img" src="{{ asset('images/RF1.png') }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-                </div>
-                @elseif($project[0] === 'MiDas')
-                <div class="slideshow-wrapper" data-images="{{ asset('images/M1.webp') }},{{ asset('images/M2.webp') }},{{ asset('images/M3.webp') }}">
-                    <img class="slide-img" src="{{ asset('images/M1.webp') }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-                </div>
-                @elseif($project[0] === 'PawPal')
-                <div class="slideshow-wrapper" data-images="{{ asset('images/P1.webp') }},{{ asset('images/P2.webp') }},{{ asset('images/P3.webp') }}">
-                    <img class="slide-img" src="{{ asset('images/P1.webp') }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-                </div>
-                @elseif($project[0] === 'TechBite')
-                <div class="slideshow-wrapper" data-images="{{ asset('images/TECH1.png') }},{{ asset('images/TECH2.png') }},{{ asset('images/TECH3.png') }}">
-                    <img class="slide-img" src="{{ asset('images/TECH1.png') }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
-                </div>
-                @else
-                <div style="font-size:4rem;">{{ $project[4] }}</div>
-                @endif
-                {{-- Hover overlay --}}
-                <div class="project-overlay" style="position:absolute;inset:0;background:#a855f722;backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;">
-                    <span style="font-family:'Instrument Sans',sans-serif;font-size:0.75rem;color:#fff;border:1px solid #fff;padding:6px 16px;border-radius:9999px;">{{ $project[2] }}</span>
-                </div>
-                {{-- Replace div above with actual <img> later --}}
+    @php
+    $featuredProjects = [
+        [
+            'title' => 'RoboFrontier',
+            'desc'  => 'A game-based robotics learning RPG built to teach robotics concepts to junior high students.',
+            'icon'  => 'rf-logo.png',
+            'badges' => ['CHAMPION 2025', 'CAPSTONE PROJECT'],
+            'tech'  => ['Unity','C#','AR','Android'],
+        ],
+        [
+            'title' => 'PawPal',
+            'desc'  => 'A pet sitter booking startup — connect with trusted sitters near you, and shop pet essentials all in one place.',
+            'icon'  => 'pawpal-logo.png',
+            'badges' => ['STARTUP CONCEPT', 'WEB APP'],
+            'tech'  => ['PHP','JavaScript','Tailwind CSS'],
+        ],
+        [
+            'title' => 'HRIS',
+            'desc'  => 'A full-scale HR platform built for Intermed LLC Corporation — payroll, attendance, leave, and timekeeping running across 6 core modules.',
+            'icon'  => 'hris-logo.png',
+            'badges' => ['INTERNSHIP AT INTERMED', 'LEAD DEVELOPER'],
+            'tech'  => ['Laravel','MySQL','REST API'],
+        ],
+    ];
+    @endphp
+
+    <div id="projectsStage" style="position:relative;height:460px;max-width:640px;margin:0 auto;">
+        @foreach($featuredProjects as $i => $p)
+        <div class="project-fan-card" data-index="{{ $i }}" style="position:absolute;top:0;left:50%;width:100%;
+                    background:var(--card-bg);border:1px solid var(--card-border);border-radius:22px;
+                    padding:2.5rem;box-shadow:0 20px 45px rgba(0,0,0,0.25);
+                    transition:transform 0.35s ease,opacity 0.35s ease,top 0.35s ease;">
+
+            {{-- Badge pills --}}
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1.25rem;">
+                @foreach($p['badges'] as $j => $badge)
+                    @if($j === 0)
+                    <span style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.02em;padding:5px 12px;border-radius:9999px;background:var(--name-color);color:#fff;">{{ $badge }}</span>
+                    @else
+                    <span style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.02em;padding:5px 12px;border-radius:9999px;border:1px solid var(--border-light);color:var(--text-secondary);">{{ $badge }}</span>
+                    @endif
+                @endforeach
             </div>
-            {{-- Info --}}
-            <div style="padding:1.5rem;">
-                <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:0.5rem;">{{ $project[0] }}</h3>
-                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1rem;">{{ $project[1] }}</p>
-                <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
-                    @foreach(explode(' · ',$project[3]) as $tech)
-                    <span style="font-family:'Instrument Sans',sans-serif;font-size:0.65rem;padding:3px 10px;border-radius:9999px;background:var(--border);color:var(--text-secondary);border:1px solid var(--border-light);">{{ $tech }}</span>
-                    @endforeach
+
+            {{-- Icon + title --}}
+            <div style="display:flex;align-items:center;gap:1.25rem;margin-bottom:1.1rem;">
+                <div style="flex-shrink:0;width:76px;height:76px;border-radius:18px;background:linear-gradient(135deg,var(--grad-1),var(--grad-2));border:1px solid #a855f733;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                    <img src="{{ asset('images/' . $p['icon']) }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;padding:6px;">
                 </div>
+                <h3 style="font-family:'Courier New',monospace;font-size:1.55rem;font-weight:700;color:var(--text-primary);">{{ $p['title'] }}</h3>
+            </div>
+
+            {{-- Description --}}
+            <p style="font-family:'Instrument Sans',sans-serif;font-size:0.95rem;color:var(--text-secondary);line-height:1.7;margin-bottom:1.75rem;">{{ $p['desc'] }}</p>
+
+            {{-- Tech pills --}}
+            <div style="display:flex;gap:0.5rem;flex-wrap:wrap;">
+                @foreach($p['tech'] as $tech)
+                <span style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;padding:5px 12px;border-radius:9999px;background:var(--badge-bg);color:var(--badge-text);border:1px solid #a855f733;">{{ $tech }}</span>
+                @endforeach
             </div>
         </div>
         @endforeach
     </div>
+
 </section>
+
+<script>
+    let projectIndex = 0;
+    const projectCards = document.querySelectorAll('.project-fan-card');
+
+    function updateProjectFan() {
+        const n = projectCards.length;
+        projectCards.forEach((card, i) => {
+            let offset = i - projectIndex;
+            if (offset > n / 2) offset -= n;
+            if (offset < -n / 2) offset += n;
+            const abs = Math.abs(offset);
+            const dir = Math.sign(offset);
+            const baseTop = abs * 22;
+
+            card.style.transform = `translateX(calc(-50% + ${offset * 58}px)) rotate(${dir * (8 + abs * 1)}deg) scale(${1 - abs * 0.04})`;
+            card.style.top = `${baseTop}px`;
+            card.style.zIndex = 10 - abs;
+            card.style.opacity = abs > 1 ? 0.7 : 1;
+            card.style.cursor = abs === 0 ? 'default' : 'pointer';
+            card.classList.toggle('project-card-active', abs === 0);
+
+            card.onclick = abs === 0 ? null : (dir < 0 ? projectPrev : projectNext);
+            card.onmouseenter = abs === 0 ? null : () => { card.style.top = `${baseTop - 16}px`; };
+            card.onmouseleave = abs === 0 ? null : () => { card.style.top = `${baseTop}px`; };
+        });
+    }
+    function projectPrev() { projectIndex = (projectIndex - 1 + projectCards.length) % projectCards.length; updateProjectFan(); }
+    function projectNext() { projectIndex = (projectIndex + 1) % projectCards.length; updateProjectFan(); }
+
+    updateProjectFan();
+</script>
 
 {{-- ── EXPERIENCE ── --}}
 <section class="reveal" style="padding:5rem 3rem;max-width:1400px;margin:0 auto;">
@@ -286,13 +332,13 @@
     ];
     @endphp
 
-    <div style="position:relative;max-width:600px;margin:0 auto;overflow:visible;">
+    <div style="position:relative;max-width:720px;margin:0 auto;overflow:visible;">
         <div id="awardsStage" style="position:relative;height:460px;overflow:visible;">
             @foreach($eduAwards as $i => $aw)
-            <div class="award-card bg-card" data-index="{{ $i }}" style="position:absolute;top:0;left:50%;width:380px;border-radius:16px;padding:1.5rem;transition:transform 0.4s ease,opacity 0.4s ease,top 0.4s ease;box-shadow:0 20px 40px rgba(0,0,0,0.35);">
-                <div class="award-img-wrap" style="width:100%;height:200px;border-radius:10px;overflow:hidden;margin-bottom:1rem;background:var(--badge-bg);">
+            <div class="award-card bg-card" data-index="{{ $i }}" style="position:absolute;top:0;left:50%;width:500px;border-radius:22px;padding:1.75rem;transition:transform 0.4s ease,opacity 0.4s ease,top 0.4s ease;box-shadow:0 20px 40px rgba(0,0,0,0.35);">
+                <div class="award-img-wrap" style="width:100%;height:250px;border-radius:10px;overflow:hidden;margin-bottom:1.5rem;background:var(--badge-bg);">
                     @if($aw[2])
-                    <img src="{{ asset('images/' . $aw[2]) }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;">
+                    <img src="{{ asset('images/' . $aw[2]) }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
                     @endif
                 </div>
                 <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;line-height:1.4;">{{ $aw[0] }}</h3>
@@ -405,6 +451,10 @@ window.addEventListener('load', () => {
     const W = canvas.width;
     const H = canvas.height;
 
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const bgColor = isLight ? '#eae5ee' : '#080818';
+    const particleColors = isLight ? ['#4c1d95', '#7c3aed'] : ['#a855f7', '#7c3aed'];
+
     const mouse = { x: -999, y: -999 };
     overlay.addEventListener('mousemove', e => {
         mouse.x = e.clientX;
@@ -422,7 +472,7 @@ window.addEventListener('load', () => {
             vx:    (Math.random() - 0.5) * 0.6,
             vy:    (Math.random() - 0.5) * 0.6,
             alpha: 0.4 + Math.random() * 0.6,
-            color: Math.random() > 0.5 ? '#a855f7' : '#7c3aed',
+            color: Math.random() > 0.5 ? particleColors[0] : particleColors[1],
             fadeOut: false,
         });
     }
@@ -433,7 +483,7 @@ window.addEventListener('load', () => {
 
     function animate() {
         frame++;
-        ctx.fillStyle = '#080818';
+        ctx.fillStyle = bgColor;
         ctx.fillRect(0, 0, W, H);
 
         particles.forEach(p => {
@@ -585,16 +635,33 @@ document.querySelectorAll('.project-card').forEach(card => {
         const w = weeks.length * (cell + gap);
         const h = 7 * (cell + gap);
 
+        function starPath(cx, cy, r) {
+            const inner = r * 0.38;
+            const pts = [
+                [cx, cy - r],
+                [cx + inner, cy - inner],
+                [cx + r, cy],
+                [cx + inner, cy + inner],
+                [cx, cy + r],
+                [cx - inner, cy + inner],
+                [cx - r, cy],
+                [cx - inner, cy - inner],
+            ];
+            return `M${pts.map(p => p.join(',')).join(' L')} Z`;
+        }
+
         const maxCount = Math.max(...days.map(d => d.count), 1);
         let dots = '';
         weeks.forEach((wk, wi) => {
             wk.forEach(d => {
                 const dow = new Date(d.date).getDay();
-                const minR = 1, maxR = cell / 2 - 0.5;
+                const minR = 1.4, maxR = cell / 2;
                 const t = d.count === 0 ? 0 : Math.min(d.count / maxCount, 1);
                 const r = minR + t * (maxR - minR);
                 const opacity = d.count === 0 ? 0.25 : 1;
-                dots += `<rect x="${wi * (cell + gap) + cell/2 - r}" y="${dow * (cell + gap) + cell/2 - r}" width="${r*2}" height="${r*2}" fill="var(--text-primary)" opacity="${opacity}" transform="rotate(45 ${wi * (cell + gap) + cell/2} ${dow * (cell + gap) + cell/2})"></rect>`;
+                const cx = wi * (cell + gap) + cell / 2;
+                const cy = dow * (cell + gap) + cell / 2;
+                dots += `<path d="${starPath(cx, cy, r)}" fill="var(--text-primary)" opacity="${opacity}"></path>`;
             });
         });
 

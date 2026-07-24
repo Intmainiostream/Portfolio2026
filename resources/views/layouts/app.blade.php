@@ -73,8 +73,8 @@
     body { background: var(--bg); transition: background 0.3s ease; }
 
     [data-theme="light"] body {
-        background-image: radial-gradient(circle, #d8b4fe55 1px, transparent 1px);
-        background-size: 24px 24px;
+        background-image: radial-gradient(circle, #d8b4fe55 1.2px, transparent 1px);
+        background-size: 22px 22px;
     }
 
     [data-theme="dark"] body {

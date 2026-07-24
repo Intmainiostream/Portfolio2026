@@ -4,12 +4,12 @@
 @section('content')
 
 {{-- ── Particle overlay ── --}}
-<div id="personalOverlay" style="position:fixed;inset:0;z-index:200;background:#080818;">
+<div id="personalOverlay" style="position:fixed;inset:0;z-index:200;background:var(--bg);">
     <canvas id="personalCanvas" style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
     <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;">
-        <p style="font-family:'Courier New',monospace;font-size:0.8rem;color:#a855f7;letter-spacing:0.2em;margin-bottom:1rem;">JOSHUA DAVE DELA CRUZ</p>
-        <h1 style="font-family:'Courier New',monospace;font-size:clamp(2rem,5vw,4rem);font-weight:700;color:#fff;letter-spacing:0.1em;margin-bottom:1rem;">UNDER CONSTRUCTION</h1>
-        <p style="font-family:'Courier New',monospace;font-size:0.75rem;color:#94a3b8;letter-spacing:0.1em;">coming soon xD</p>
+        <p style="font-family:'Courier New',monospace;font-size:0.8rem;color:var(--name-color);letter-spacing:0.2em;margin-bottom:1rem;">JOSHUA DAVE DELA CRUZ</p>
+        <h1 style="font-family:'Courier New',monospace;font-size:clamp(2rem,5vw,4rem);font-weight:700;color:var(--text-primary);letter-spacing:0.1em;margin-bottom:1rem;">UNDER CONSTRUCTION</h1>
+        <p style="font-family:'Courier New',monospace;font-size:0.75rem;color:var(--text-secondary);letter-spacing:0.1em;">coming soon xD</p>
     </div>
 </div>
 
@@ -25,6 +25,10 @@ window.addEventListener('load', () => {
     const W = canvas.width;
     const H = canvas.height;
 
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const bgColor = isLight ? '#c9c2d6' : '#080818';
+    const particleColors = isLight ? ['#4c1d95', '#7c3aed'] : ['#a855f7', '#7c3aed'];
+
     const particles = [];
     const count = 140;
 
@@ -36,12 +40,12 @@ window.addEventListener('load', () => {
             vx:    (Math.random() - 0.5) * 0.6,
             vy:    (Math.random() - 0.5) * 0.6,
             alpha: 0.4 + Math.random() * 0.6,
-            color: Math.random() > 0.5 ? '#a855f7' : '#7c3aed',
+            color: Math.random() > 0.5 ? particleColors[0] : particleColors[1],
         });
     }
 
     function animate() {
-        ctx.fillStyle = '#080818';
+        ctx.fillStyle = bgColor;
         ctx.fillRect(0, 0, W, H);
 
         particles.forEach(p => {
