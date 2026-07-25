@@ -10,6 +10,9 @@ Route::get('/personal', function () {
 Route::get('/stack', function () {
     return view('stack');
 });
+Route::get('/projects', function () {
+    return view('projects');
+});
 Route::get('/professional', function () {
     return view('home');
 });

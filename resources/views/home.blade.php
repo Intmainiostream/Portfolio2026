@@ -10,11 +10,17 @@
 
 {{-- ── NAV ── --}}
 <nav style="position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display:flex;justify-content:flex-end;align-items:center;backdrop-filter:blur(10px);background:var(--nav-bg);border-bottom:1px solid var(--border);">
-    
-    <div style="display:flex;gap:2rem;align-items:center;">
+
+    <button class="nav-hamburger" onclick="toggleMobileNav()" style="background:none;border:none;cursor:pointer;padding:0;width:26px;height:20px;flex-direction:column;justify-content:space-between;">
+        <span style="display:block;width:100%;height:2px;background:var(--text-primary);"></span>
+        <span style="display:block;width:100%;height:2px;background:var(--text-primary);"></span>
+        <span style="display:block;width:100%;height:2px;background:var(--text-primary);"></span>
+    </button>
+    <div id="navLinks" class="nav-links" style="display:flex;gap:2rem;align-items:center;">
         <a href="/" id="navHome" data-section="hero" onclick="if(window.location.pathname==='/'){window.scrollTo({top:0,behavior:'instant'});return false;}" style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;font-weight:400;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;display:inline-block;transition:font-size 0.25s ease,font-weight 0.25s ease,color 0.25s ease;">Home</a>
         <a href="#about" id="navAbout" data-section="about"      style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;font-weight:400;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;display:inline-block;transition:font-size 0.25s ease,font-weight 0.25s ease,color 0.25s ease;">About</a>
         <a href="/stack" style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;font-weight:400;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;">Stack</a>
+        <a href="/projects" style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;font-weight:400;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;">Projects</a>
         <a href="#contact" id="navContact" data-section="contact"      style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;font-weight:400;color:var(--text-body);text-decoration:none;letter-spacing:0.05em;display:inline-block;transition:font-size 0.25s ease,font-weight 0.25s ease,color 0.25s ease;">Contact</a>
         <button id="themeToggle" onclick="toggleTheme()" style="width:34px;height:34px;border-radius:50%;border:1px solid var(--border-light);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
             <img id="themeIcon" src="{{ asset('images/dark-mode.png') }}" style="width:26px;height:26px;object-fit:contain;">
@@ -40,7 +46,7 @@
         <p style="font-family:'Instrument Sans',sans-serif;color:var(--text-body);font-size:1rem;line-height:1.7;max-width:520px;margin-bottom:2rem;">
             Based in Pangasinan, PH. I love turning rough ideas into things people actually use.
         </p>
-        <div style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;font-family:'Courier New',monospace;font-size:0.8rem;">
+        <div class="hero-links" style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;font-family:'Courier New',monospace;font-size:0.8rem;">
             <a href="{{ asset('cv/Resume_JoshuaDaveDelaCruz.pdf') }}" style="color:var(--name-color);text-decoration:none;" download>resume ↗</a>
             <a href="https://github.com/Intmainiostream" target="_blank" style="color:var(--text-secondary);text-decoration:none;">github ↗</a>
             <a href="https://linkedin.com/in/joshua-dev-cruzz" target="_blank" style="color:var(--text-secondary);text-decoration:none;">linkedin ↗</a>
@@ -180,21 +186,21 @@
         [
             'title' => 'RoboFrontier',
             'desc'  => 'A game-based robotics learning RPG built to teach robotics concepts to junior high students.',
-            'icon'  => 'rf-logo.png',
+            'icon'  => 'rf-logo.webp',
             'badges' => ['CHAMPION 2025', 'CAPSTONE PROJECT'],
             'tech'  => ['Unity','C#','AR','Android'],
         ],
         [
             'title' => 'PawPal',
             'desc'  => 'A pet sitter booking startup — connect with trusted sitters near you, and shop pet essentials all in one place.',
-            'icon'  => 'pawpal-logo.png',
+            'icon'  => 'pawpal-logo.webp',
             'badges' => ['STARTUP CONCEPT', 'WEB APP'],
             'tech'  => ['PHP','JavaScript','Tailwind CSS'],
         ],
         [
             'title' => 'HRIS',
             'desc'  => 'A full-scale HR platform built for Intermed LLC Corporation — payroll, attendance, leave, and timekeeping running across 6 core modules.',
-            'icon'  => 'hris-logo.png',
+            'icon'  => 'hris-logo.webp',
             'badges' => ['INTERNSHIP AT INTERMED', 'LEAD DEVELOPER'],
             'tech'  => ['Laravel','MySQL','REST API'],
         ],
@@ -323,12 +329,12 @@
 
     @php
     $eduAwards = [
-        ['IT Skills Olympics','Android Dev · Game Category · Champion 2025','umak.png'],
-        ['SikapTala National Competition','Research Presentation · Top 3 · 2026','research_award.png'],
-        ['SikapTala National Competition','Game Jam · Top 10 · 2026','gamejam.png'],
-        ['Academic Distinction Award','Urdaneta City University','academic_distinction.png'],
-        ['Special Achievement Award','Urdaneta City University','special_award.png'],
-        ['Proficiency On-the-Job Training Award','Medisource Intermed LLC','ojt.png'],
+        ['IT Skills Olympics','Android Dev · Game Category · Champion 2025','umak.webp'],
+        ['SikapTala National Competition','Research Presentation · Top 3 · 2026','research_award.webp'],
+        ['SikapTala National Competition','Game Jam · Top 10 · 2026','gamejam.webp'],
+        ['Academic Distinction Award','Urdaneta City University','academic_distinction.webp'],
+        ['Special Achievement Award','Urdaneta City University','special_award.webp'],
+        ['Proficiency On-the-Job Training Award','Medisource Intermed LLC','ojt.webp'],
     ];
     @endphp
 
