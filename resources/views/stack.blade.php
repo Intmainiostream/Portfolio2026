@@ -24,9 +24,7 @@
 </nav>
 
 {{-- ── STACK PAGE ── --}}
-<section style="padding:8rem 3rem 6rem;max-width:1000px;margin:0 auto;">
-
-    <a href="/#about" style="display:inline-block;font-family:'Instrument Sans',sans-serif;font-size:0.75rem;color:var(--text-secondary);text-decoration:none;margin-bottom:2rem;letter-spacing:0.05em;">← Back to home</a>
+<section style="padding:9rem 3rem 6rem;max-width:1000px;margin:0 auto;">
 
     <h1 style="font-family:'Courier New',monospace;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--text-primary);margin-bottom:1rem;">Stack</h1>
     <p style="font-family:'Instrument Sans',sans-serif;font-size:0.95rem;color:var(--text-secondary);line-height:1.7;max-width:600px;margin-bottom:3.5rem;">
@@ -43,9 +41,9 @@
     @endphp
 
     @foreach($stack as $category => $items)
-    <div style="margin-bottom:2.5rem;">
-        <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;font-weight:600;color:var(--text-secondary);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;">{{ $category }}</p>
-        <div style="display:flex;flex-wrap:wrap;gap:0.6rem;">
+    <div class="stack-category" style="margin-bottom:2.5rem;">
+        <p class="stack-title" style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;font-weight:600;color:var(--text-secondary);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:1rem;">{{ $category }}</p>
+        <div class="stack-pills" style="display:flex;flex-wrap:wrap;gap:0.6rem;">
             @foreach($items as $item)
             <span style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;padding:6px 14px;border-radius:9999px;background:var(--badge-bg);color:var(--badge-text);border:1px solid #a855f733;">{{ $item }}</span>
             @endforeach

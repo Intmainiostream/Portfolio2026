@@ -5,6 +5,7 @@
 
 {{-- ── NAV ── --}}
 <nav style="position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 3rem;display:flex;justify-content:flex-end;align-items:center;backdrop-filter:blur(10px);background:var(--nav-bg);border-bottom:1px solid var(--border);">
+
     <button class="nav-hamburger" onclick="toggleMobileNav()" style="background:none;border:none;cursor:pointer;padding:0;width:26px;height:20px;flex-direction:column;justify-content:space-between;">
         <span style="display:block;width:100%;height:2px;background:var(--text-primary);"></span>
         <span style="display:block;width:100%;height:2px;background:var(--text-primary);"></span>
@@ -22,74 +23,40 @@
     </div>
 </nav>
 
-{{-- ── PROJECTS PAGE ── --}}
-<section style="padding:8rem 3rem 6rem;max-width:1100px;margin:0 auto;">
-
-    <a href="/#projects" style="display:inline-block;font-family:'Instrument Sans',sans-serif;font-size:0.75rem;color:var(--text-secondary);text-decoration:none;margin-bottom:2rem;letter-spacing:0.05em;">← Back to home</a>
-
+{{-- ── HEADER ── --}}
+<section style="padding:9rem 3rem 3rem;max-width:1200px;margin:0 auto;">
     <h1 style="font-family:'Courier New',monospace;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--text-primary);margin-bottom:1rem;">Projects</h1>
-    <p style="font-family:'Instrument Sans',sans-serif;font-size:0.95rem;color:var(--text-secondary);line-height:1.7;max-width:600px;margin-bottom:3.5rem;">
+    <p style="font-family:'Instrument Sans',sans-serif;font-size:0.95rem;color:var(--text-secondary);line-height:1.7;max-width:600px;">
         A running log of what I've built — web systems, games, and everything in between.
     </p>
+</section>
+
+{{-- ── PROJECTS GRID ── --}}
+<section style="padding:0 3rem 6rem;max-width:1200px;margin:0 auto;">
 
     @php
     $allProjects = [
-        [
-            'title' => 'RoboFrontier',
-            'icon'  => 'rf-logo.webp',
-        ],
-        [
-            'title' => 'PawPal',
-            'icon'  => 'pawpal-logo.webp',
-        ],
-        [
-            'title' => 'HRIS',
-            'icon'  => 'hris-logo.webp',
-        ],
-        [
-            'title' => 'Tanikala at Laya',
-            'icon'  => 'tanikala-logo.webp',
-        ],
-        [
-            'title' => 'ReVeil',
-            'icon'  => 'reveil-logo.webp',
-        ],
-        [
-            'title' => 'Terastalia',
-            'icon'  => 'tera-logo.webp',
-        ],
-        [
-            'title' => 'SQNHS STE Enrollment System',
-            'icon'  => 'lms-logo.webp',
-        ],
-        [
-            'title' => 'SQNHS Information System',
-            'icon'  => 'repo-logo.webp',
-        ],
-        [
-            'title' => 'Fragments of Hue',
-            'icon'  => 'fragment-logo.webp',
-        ],
-        [
-            'title' => 'TechBite',
-            'icon'  => 'fragment-logo.webp',
-            'icon'  => 'techbite-logo.webp',
-        ],
-        [
-            'title' => 'MiDas',
-            'icon'  => 'fragment-logo.webp',
-            'icon'  => 'midas-logo.webp',
-        ],
+        ['RoboFrontier', 'rf-logo.webp'],
+        ['PawPal', 'pawpal-logo.webp'],
+        ['HRIS', 'hris-logo.webp'],
+        ['Tanikala at Laya', 'tanikala-logo.webp'],
+        ['ReVeil', 'reveil-logo.webp'],
+        ['Terastalia', 'tera-logo.webp'],
+        ['SQNHS STE Enrollment System', 'lms-logo.webp'],
+        ['SQNHS Information System', 'repo-logo.webp'],
+        ['Fragments of Hue', 'fragment-logo.webp'],
+        ['TechBite', 'techbite-logo.webp'],
+        ['MiDas', 'midas-logo.webp'],
     ];
     @endphp
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;">
-        @foreach($allProjects as $p)
-        <div class="project-tile" onmouseover="this.querySelector('img').style.transform='scale(1.08)';this.querySelector('.project-tile-box').style.borderColor='var(--name-color)';this.querySelector('.project-tile-box').style.boxShadow='0 12px 30px rgba(0,0,0,0.18)';" onmouseout="this.querySelector('img').style.transform='scale(1)';this.querySelector('.project-tile-box').style.borderColor='var(--card-border)';this.querySelector('.project-tile-box').style.boxShadow='none';">
+    <div class="projects-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;">
+        @foreach($allProjects as $proj)
+        <div class="project-card-item" onmouseover="this.querySelector('img').style.transform='scale(1.08)';this.querySelector('.project-tile-box').style.borderColor='var(--name-color)';this.querySelector('.project-tile-box').style.boxShadow='0 12px 30px rgba(0,0,0,0.18)';" onmouseout="this.querySelector('img').style.transform='scale(1)';this.querySelector('.project-tile-box').style.borderColor='var(--card-border)';this.querySelector('.project-tile-box').style.boxShadow='none';">
             <div class="project-tile-box" style="position:relative;width:100%;aspect-ratio:1/1;border-radius:18px;background:linear-gradient(135deg,var(--grad-1),var(--grad-2));border:1px solid var(--card-border);overflow:hidden;transition:border-color 0.3s ease,box-shadow 0.3s ease;cursor:pointer;">
-                <img src="{{ asset('images/' . $p['icon']) }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;padding:{{ $p['title'] === 'ReVeil' ? '0.75rem' : '2.5rem' }};transition:transform 0.35s ease;">
+                <img src="{{ asset('images/' . $proj[1]) }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;padding:{{ $proj[0] === 'ReVeil' ? '0.75rem' : '2.5rem' }};transition:transform 0.35s ease;">
 
-                {{-- Arrow button — wire up link later --}}
+                {{-- Arrow button --}}
                 <a href="#" style="position:absolute;top:0.9rem;right:0.9rem;width:38px;height:38px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform 0.25s ease;"
                     onmouseover="event.stopPropagation();this.style.transform='scale(1.15) rotate(45deg)';this.querySelector('svg').style.stroke='var(--name-color)';"
                     onmouseout="event.stopPropagation();this.style.transform='scale(1) rotate(0deg)';this.querySelector('svg').style.stroke='var(--text-primary)';">
@@ -100,19 +67,20 @@
                 </a>
             </div>
 
-            <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1.1rem;font-weight:800;letter-spacing:0.02em;text-transform:uppercase;color:var(--text-primary);margin-top:1rem;line-height:1.3;text-align:center;">{{ $p['title'] }}</h3>
+            <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1.1rem;font-weight:800;letter-spacing:0.02em;text-transform:uppercase;color:var(--text-primary);margin-top:1rem;line-height:1.3;text-align:center;">{{ $proj[0] }}</h3>
         </div>
         @endforeach
     </div>
 
 </section>
 
-{{-- ── SCRIPTS ── --}}
-<script>
-    window.addEventListener('load', () => {
-        const icon = document.getElementById('themeIcon');
-        if (icon) icon.src = document.documentElement.getAttribute('data-theme') === 'light' ? '{{ asset("images/dark-mode.png") }}' : '{{ asset("images/light-mode_white.png") }}';
-    });
-</script>
+<style>
+    @media (max-width: 1024px) and (min-width: 769px) {
+        .projects-grid { grid-template-columns: repeat(2,1fr) !important; }
+    }
+    @media (max-width: 768px) {
+        .projects-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+    }
+</style>
 
 @endsection

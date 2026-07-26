@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <script>
         // Prevent flash of wrong theme before CSS loads
         (function() {
@@ -72,6 +72,10 @@
 
     body { background: var(--bg); transition: background 0.3s ease; }
 
+    html, body { max-width: 100%; overflow-x: hidden; }
+
+    
+
     [data-theme="light"] body {
         background-image: radial-gradient(circle, #d8b4fe55 1.2px, transparent 1px);
         background-size: 22px 22px;
@@ -101,9 +105,19 @@
 
     .nav-hamburger { display: none; }
 
+    @media (hover: none) {
+        .pill-btn, .pill-btn-filled {
+            background: transparent !important;
+            color: var(--name-color) !important;
+            border-color: var(--name-color) !important;
+        }
+        .pill-btn-filled {
+            background: var(--name-color) !important;
+            color: #fff !important;
+        }
+    }
+
     @media (max-width: 1024px) and (min-width: 769px) {
-        /* Tablet — 3-col project grid → 2 cols */
-        .projects-grid { grid-template-columns: repeat(2,1fr) !important; }
         section { padding-left: 2rem !important; padding-right: 2rem !important; }
     }
 
@@ -112,6 +126,19 @@
         nav { padding: 1rem 1.25rem !important; }
 
         .nav-hamburger { display: flex !important; }
+
+        #themeToggle {
+            position: absolute !important;
+            top: 1.5rem !important;
+            right: 1.25rem !important;
+            width: 46px !important;
+            height: 46px !important;
+        }
+        #themeIcon {
+            width: 30px !important;
+            height: 30px !important;
+        }
+
         .nav-links {
             position: fixed;
             top: 60px; left: 0; right: 0;
@@ -145,14 +172,42 @@ section:first-of-type > div:last-child > div > div:last-child { width: 180px !im
         /* All 2-col grids → 1 col */
         div[style*="repeat(2,1fr)"], div[style*="2fr 1fr"] { grid-template-columns: 1fr !important; }
 
-        /* Projects grid (3-col) → 2 cols on mobile */
-        .projects-grid { grid-template-columns: repeat(2,1fr) !important; gap: 1rem !important; }
+        
 
         /* Section padding */
         section { padding-left: 1.25rem !important; padding-right: 1.25rem !important; }
 
         /* Footer */
         footer { flex-direction: column !important; gap: 1rem !important; text-align: center !important; padding: 1.5rem 1.25rem !important; }
+
+        /* Stack page — center category titles + pill rows only */
+        section p[style*="text-transform:uppercase"] {
+            text-align: center !important;
+            display: block !important;
+            width: 100% !important;
+        }
+        .stack-category {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+        }
+        section div[style*="flex-wrap:wrap"] {
+            display: grid !important;
+            grid-template-columns: repeat(2,1fr) !important;
+            justify-items: center !important;
+            gap: 0.6rem !important;
+            width: 100% !important;
+        }
+
+        /* Projects & Awards carousels — proportional cards, no clipping */
+        #awardsStage { max-width: 100% !important; height: 520px !important; }
+        div[style*="max-width:720px"] { max-width: 100% !important; padding-bottom: 2rem !important; }
+        .award-card { width: 78vw !important; max-width: 320px !important; }
+        .award-img-wrap { height: 180px !important; }
+        .project-fan-card { padding: 1.5rem !important; }
+        #projectsStage { height: 520px !important; }
+
+        #awardsStage { height: 460px !important; }
     }
 </style>
 </head>
@@ -168,10 +223,18 @@ section:first-of-type > div:last-child > div > div:last-child { width: 180px !im
             localStorage.setItem('theme', next);
             const icon = document.getElementById('themeIcon');
             if (icon) icon.src = next === 'light' ? '{{ asset("images/dark-mode.png") }}' : '{{ asset("images/light-mode_white.png") }}';
+            document.getElementById('navLinks').classList.remove('open');
         }
         function toggleMobileNav() {
             document.getElementById('navLinks').classList.toggle('open');
         }
+        window.addEventListener('load', () => {
+            document.querySelectorAll('#navLinks a').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('navLinks').classList.remove('open');
+                });
+            });
+        });
         window.addEventListener('load', () => {
             const icon = document.getElementById('themeIcon');
             if (icon) icon.src = document.documentElement.getAttribute('data-theme') === 'light' ? '{{ asset("images/dark-mode.png") }}' : '{{ asset("images/light-mode_white.png") }}';

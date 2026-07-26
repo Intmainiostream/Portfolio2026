@@ -19,11 +19,17 @@ window.addEventListener('load', () => {
     const canvas  = document.getElementById('personalCanvas');
     const ctx     = canvas.getContext('2d');
 
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
+    overlay.style.pointerEvents = 'none';
 
-    const W = canvas.width;
-    const H = canvas.height;
+    function resizeCanvas() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let W = canvas.width;
+    let H = canvas.height;
 
     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
     const bgColor = isLight ? '#c9c2d6' : '#080818';
@@ -41,28 +47,58 @@ window.addEventListener('load', () => {
             vy:    (Math.random() - 0.5) * 0.6,
             alpha: 0.4 + Math.random() * 0.6,
             color: Math.random() > 0.5 ? particleColors[0] : particleColors[1],
+            fadeOut: false,
         });
     }
 
+    let frame = 0;
+    let exitStarted = false;
+
     function animate() {
+        frame++;
+        W = canvas.width;
+        H = canvas.height;
         ctx.fillStyle = bgColor;
         ctx.fillRect(0, 0, W, H);
 
+        let dissolvedCount = 0;
+
         particles.forEach(p => {
+            if (p.alpha <= 0) { dissolvedCount++; return; }
+
             p.x += p.vx;
             p.y += p.vy;
             if (p.x < 0 || p.x > W) p.vx *= -1;
             if (p.y < 0 || p.y > H) p.vy *= -1;
-            p.alpha = Math.max(0.2, Math.min(1, p.alpha + (Math.random() - 0.5) * 0.02));
+
+            if (p.fadeOut) {
+                p.alpha -= 0.012;
+            } else {
+                p.alpha = Math.max(0.2, Math.min(1, p.alpha + (Math.random() - 0.5) * 0.02));
+            }
 
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
             ctx.fillStyle = p.color;
-            ctx.globalAlpha = p.alpha;
+            ctx.globalAlpha = Math.max(0, p.alpha);
             ctx.fill();
         });
 
         ctx.globalAlpha = 1;
+
+        if (frame > 130 && !exitStarted) {
+            exitStarted = true;
+            particles.forEach((p, i) => {
+                setTimeout(() => { p.fadeOut = true; }, i * 12);
+            });
+        }
+
+        if (exitStarted && dissolvedCount >= particles.length && frame > 130 + count * 12 / 16) {
+            overlay.classList.add('fade-out');
+            setTimeout(() => overlay.remove(), 700);
+            return;
+        }
+
         requestAnimationFrame(animate);
     }
 

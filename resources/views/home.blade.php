@@ -246,22 +246,45 @@
         @endforeach
     </div>
 
+    <div class="project-nav-mobile" style="display:none;justify-content:center;gap:1.5rem;margin-top:1.5rem;">
+        <button onclick="projectPrev()" style="width:44px;height:44px;border-radius:50%;border:1px solid var(--border-light);background:var(--card-bg);color:var(--text-primary);font-size:1.1rem;cursor:pointer;">‹</button>
+        <button onclick="projectNext()" style="width:44px;height:44px;border-radius:50%;border:1px solid var(--border-light);background:var(--card-bg);color:var(--text-primary);font-size:1.1rem;cursor:pointer;">›</button>
+    </div>
+
 </section>
 
 <script>
     let projectIndex = 0;
     const projectCards = document.querySelectorAll('.project-fan-card');
 
+    const projIsMobile = () => window.innerWidth <= 768;
+
     function updateProjectFan() {
         const n = projectCards.length;
+        const mobile = projIsMobile();
+        document.querySelectorAll('.project-nav-mobile').forEach(el => el.style.display = mobile ? 'flex' : 'none');
+
         projectCards.forEach((card, i) => {
             let offset = i - projectIndex;
             if (offset > n / 2) offset -= n;
             if (offset < -n / 2) offset += n;
             const abs = Math.abs(offset);
             const dir = Math.sign(offset);
-            const baseTop = abs * 22;
 
+            if (mobile) {
+                card.style.display = abs === 0 ? 'block' : 'none';
+                card.style.transform = 'translateX(-50%)';
+                card.style.top = '0px';
+                card.style.opacity = 1;
+                card.onclick = null;
+                card.onmouseenter = null;
+                card.onmouseleave = null;
+                card.classList.toggle('project-card-active', abs === 0);
+                return;
+            }
+
+            card.style.display = 'block';
+            const baseTop = abs * 22;
             card.style.transform = `translateX(calc(-50% + ${offset * 58}px)) rotate(${dir * (8 + abs * 1)}deg) scale(${1 - abs * 0.04})`;
             card.style.top = `${baseTop}px`;
             card.style.zIndex = 10 - abs;
@@ -276,6 +299,7 @@
     }
     function projectPrev() { projectIndex = (projectIndex - 1 + projectCards.length) % projectCards.length; updateProjectFan(); }
     function projectNext() { projectIndex = (projectIndex + 1) % projectCards.length; updateProjectFan(); }
+    window.addEventListener('resize', updateProjectFan);
 
     updateProjectFan();
 </script>
@@ -361,21 +385,43 @@
             @endforeach
         </div>
 
-        
+        <div class="award-nav-mobile" style="display:none;justify-content:center;gap:1.5rem;margin-top:1.5rem;">
+            <button onclick="awardPrev()" style="width:44px;height:44px;border-radius:50%;border:1px solid var(--border-light);background:var(--card-bg);color:var(--text-primary);font-size:1.1rem;cursor:pointer;">‹</button>
+            <button onclick="awardNext()" style="width:44px;height:44px;border-radius:50%;border:1px solid var(--border-light);background:var(--card-bg);color:var(--text-primary);font-size:1.1rem;cursor:pointer;">›</button>
+        </div>
     </div>
 
     <script>
         let awardIndex = 0;
         const awardCards = document.querySelectorAll('.award-card');
 
+        const isMobile = () => window.innerWidth <= 768;
+
         function updateAwardCarousel() {
             const n = awardCards.length;
+            const mobile = isMobile();
+            document.querySelectorAll('.award-nav-mobile').forEach(el => el.style.display = mobile ? 'flex' : 'none');
+
             awardCards.forEach((card, i) => {
                 let offset = i - awardIndex;
                 if (offset > n / 2) offset -= n;
                 if (offset < -n / 2) offset += n;
                 const abs = Math.abs(offset);
                 const dir = Math.sign(offset);
+
+                if (mobile) {
+                    card.style.display = abs === 0 ? 'block' : 'none';
+                    card.style.transform = 'translateX(-50%)';
+                    card.style.top = '0px';
+                    card.style.opacity = 1;
+                    card.onclick = null;
+                    card.onmouseenter = null;
+                    card.onmouseleave = null;
+                    card.classList.toggle('award-card-active', abs === 0);
+                    return;
+                }
+
+                card.style.display = 'block';
                 card.style.transform = `translateX(calc(-50% + ${offset * 55 + dir * Math.max(0, abs - 1) * 45}px)) scale(${1 - abs * 0.08}) rotate(${dir * (8 + abs * 2)}deg)`;
                 const baseTop = abs * 22;
                 card.style.top = `${baseTop}px`;
@@ -390,6 +436,7 @@
         }
         function awardPrev() { awardIndex = (awardIndex - 1 + awardCards.length) % awardCards.length; updateAwardCarousel(); }
         function awardNext() { awardIndex = (awardIndex + 1) % awardCards.length; updateAwardCarousel(); }
+        window.addEventListener('resize', updateAwardCarousel);
 
         function openAwardPreview(event, src) {
             event.stopPropagation();
@@ -451,11 +498,17 @@ window.addEventListener('load', () => {
     const canvas  = document.getElementById('symbioteCanvas');
     const ctx     = canvas.getContext('2d');
 
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
+    overlay.style.pointerEvents = 'none';
 
-    const W = canvas.width;
-    const H = canvas.height;
+    function resizeCanvas() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let W = canvas.width;
+    let H = canvas.height;
 
     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
     const bgColor = isLight ? '#eae5ee' : '#080818';
@@ -489,6 +542,8 @@ window.addEventListener('load', () => {
 
     function animate() {
         frame++;
+        W = canvas.width;
+        H = canvas.height;
         ctx.fillStyle = bgColor;
         ctx.fillRect(0, 0, W, H);
 
