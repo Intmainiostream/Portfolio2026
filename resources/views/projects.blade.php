@@ -36,39 +36,37 @@
 
     @php
     $allProjects = [
-        ['RoboFrontier', 'rf-logo.webp'],
-        ['PawPal', 'pawpal-logo.webp'],
-        ['HRIS', 'hris-logo.webp'],
-        ['Tanikala at Laya', 'tanikala-logo.webp'],
-        ['ReVeil', 'reveil-logo.webp'],
-        ['Terastalia', 'tera-logo.webp'],
-        ['SQNHS STE Enrollment System', 'lms-logo.webp'],
-        ['SQNHS Information System', 'repo-logo.webp'],
-        ['Fragments of Hue', 'fragment-logo.webp'],
-        ['TechBite', 'techbite-logo.webp'],
-        ['MiDas', 'midas-logo.webp'],
+        ['RoboFrontier', 'rf-logo.webp', 'robofrontier'],
+        ['PawPal', 'pawpal-logo.webp', 'pawpal'],
+        ['HRIS', 'hris-logo.webp', 'hris'],
+        ['Tanikala at Laya', 'tanikala-logo.webp', 'tanikala-at-laya'],
+        ['ReVeil', 'reveil-logo.webp', 'reveil'],
+        ['Terastalia', 'tera-logo.webp', 'terastalia'],
+        ['SQNHS STE Enrollment System', 'lms-logo.webp', 'sqnhs-ste-lms'],
+        ['SQNHS Information System', 'repo-logo.webp', 'sqnhs-cms'],
+        ['Fragments of Hue', 'fragment-logo.webp', 'fragments-of-hue'],
+        ['TechBite', 'techbite-logo.webp', 'techbite'],
+        ['MiDas', 'midas-logo.webp', 'midas'],
     ];
     @endphp
 
     <div class="projects-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;">
         @foreach($allProjects as $proj)
-        <div class="project-card-item" onmouseover="this.querySelector('img').style.transform='scale(1.08)';this.querySelector('.project-tile-box').style.borderColor='var(--name-color)';this.querySelector('.project-tile-box').style.boxShadow='0 12px 30px rgba(0,0,0,0.18)';" onmouseout="this.querySelector('img').style.transform='scale(1)';this.querySelector('.project-tile-box').style.borderColor='var(--card-border)';this.querySelector('.project-tile-box').style.boxShadow='none';">
+        <a href="/projects/{{ $proj[2] }}" class="project-card-item" style="text-decoration:none;display:block;" onmouseover="this.querySelector('img').style.transform='scale(1.08)';this.querySelector('.project-tile-box').style.borderColor='var(--name-color)';this.querySelector('.project-tile-box').style.boxShadow='0 12px 30px rgba(0,0,0,0.18)';" onmouseout="this.querySelector('img').style.transform='scale(1)';this.querySelector('.project-tile-box').style.borderColor='var(--card-border)';this.querySelector('.project-tile-box').style.boxShadow='none';">
             <div class="project-tile-box" style="position:relative;width:100%;aspect-ratio:1/1;border-radius:18px;background:linear-gradient(135deg,var(--grad-1),var(--grad-2));border:1px solid var(--card-border);overflow:hidden;transition:border-color 0.3s ease,box-shadow 0.3s ease;cursor:pointer;">
                 <img src="{{ asset('images/' . $proj[1]) }}" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:contain;padding:{{ $proj[0] === 'ReVeil' ? '0.75rem' : '2.5rem' }};transition:transform 0.35s ease;">
 
-                {{-- Arrow button --}}
-                <a href="#" style="position:absolute;top:0.9rem;right:0.9rem;width:38px;height:38px;display:flex;align-items:center;justify-content:center;text-decoration:none;transition:transform 0.25s ease;"
-                    onmouseover="event.stopPropagation();this.style.transform='scale(1.15) rotate(45deg)';this.querySelector('svg').style.stroke='var(--name-color)';"
-                    onmouseout="event.stopPropagation();this.style.transform='scale(1) rotate(0deg)';this.querySelector('svg').style.stroke='var(--text-primary)';">
+                {{-- Arrow icon (no longer a separate link, just decorative) --}}
+                <span style="position:absolute;top:0.9rem;right:0.9rem;width:38px;height:38px;display:flex;align-items:center;justify-content:center;transition:transform 0.25s ease;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:stroke 0.25s ease;">
                         <path d="M7 17 17 7"></path>
                         <path d="M7 7h10v10"></path>
                     </svg>
-                </a>
+                </span>
             </div>
 
             <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1.1rem;font-weight:800;letter-spacing:0.02em;text-transform:uppercase;color:var(--text-primary);margin-top:1rem;line-height:1.3;text-align:center;">{{ $proj[0] }}</h3>
-        </div>
+        </a>
         @endforeach
     </div>
 

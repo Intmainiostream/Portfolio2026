@@ -13,6 +13,9 @@ Route::get('/stack', function () {
 Route::get('/projects', function () {
     return view('projects');
 });
+Route::get('/projects/{slug}', function ($slug) {
+    return view('projects.' . $slug);
+});
 Route::get('/professional', function () {
     return view('home');
 });
