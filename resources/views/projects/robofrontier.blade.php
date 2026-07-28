@@ -86,10 +86,10 @@
 </section>
 
 {{-- ── CHEVRON DIVIDER (into dark features banner) ── --}}
-<div class="rf-chevron" style="height:70px;background:linear-gradient(135deg,var(--grad-2),var(--accent-dark));clip-path:polygon(0 0,50% 100%,100% 0,100% 100%,0 100%);"></div>
+<div class="rf-chevron" style="height:70px;background:linear-gradient(135deg,var(--feature-grad-1),var(--feature-grad-2));clip-path:polygon(0 0,50% 100%,100% 0,100% 100%,0 100%);"></div>
 
 {{-- ── KEY FEATURES BANNER ── --}}
-<section style="background:linear-gradient(135deg,var(--grad-2),var(--accent-dark));padding:5rem 3rem 6rem;text-align:center;">
+<section style="background:linear-gradient(135deg,var(--feature-grad-1),var(--feature-grad-2));padding:5rem 3rem 6rem;text-align:center;">
     <h2 style="font-family:'Courier New',monospace;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;color:#fff;letter-spacing:0.03em;">KEY FEATURES:</h2>
 </section>
 

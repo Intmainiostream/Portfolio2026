@@ -33,6 +33,8 @@
         --grad-1: #2E0047;
         --grad-2: #000847;
         --nav-bg: rgba(8,8,24,0.8);
+        --feature-grad-1: var(--grad-2);
+        --feature-grad-2: var(--accent-dark);
         --card-bg: #0f0f23;
         --card-border: #1e1e3f;
         --card-hover-bg: #14142b;
@@ -60,6 +62,8 @@
         --grad-1: #f3e8ff;
         --grad-2: #ede9fe;
         --nav-bg: rgba(255,255,255,0.85);
+        --feature-grad-1: #cbd5e1;
+        --feature-grad-2: #919ba8;
         --card-bg: #faf5ff;
         --card-border: #e9d8fd;
         --card-hover-bg: #f3e8ff;
