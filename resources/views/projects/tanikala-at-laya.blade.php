@@ -54,6 +54,9 @@
         <p style="font-family:'Instrument Sans',sans-serif;font-size:0.95rem;color:var(--text-secondary);line-height:1.8;">
             Tanikala at Laya is a 2D side-scroller visual narrative game built in Unity, telling a fictionalized coming-of-age story set against the backdrop of Martial Law under the Marcos regime — from the early years of curfews and censorship through the unrest that led to the EDSA People Power Revolution. I came on as a freelance developer to help the client's team bring their capstone project to life — from development and cloud infrastructure to the research paper and thesis documentation itself — while the client's team led the narrative and historical research.
         </p>
+        <p style="font-family:'Instrument Sans',sans-serif;font-size:0.85rem;font-style:italic;color:var(--text-secondary);line-height:1.8;margin-top:1.5rem;">
+            Fun fact: "Tanikala" means chains, and "Laya" means freedom, so Tanikala at Laya translates to "Chains and Freedom."
+        </p>
     </div>
 </section>
 
