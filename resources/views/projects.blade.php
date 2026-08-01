@@ -45,8 +45,8 @@
         ['SQNHS STE Enrollment System', 'lms-logo.webp', 'sqnhs-ste-lms'],
         ['SQNHS Information System', 'repo-logo.webp', 'sqnhs-cms'],
         ['Fragments of Hue', 'fragment-logo.webp', 'fragments-of-hue'],
-        ['TechBite', 'techbite-logo.webp', 'techbite'],
         ['MiDas', 'midas-logo.webp', 'midas'],
+        ['TechBite', 'techbite-logo.webp', 'techbite'],
     ];
     @endphp
 

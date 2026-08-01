@@ -41,10 +41,10 @@
             Joshua Dave<br>Dela Cruz
         </h1>
         <p style="font-family:'Instrument Sans',sans-serif;color:var(--text-body);font-size:1rem;line-height:1.7;max-width:520px;margin-bottom:0.5rem;">
-            I'm a software engineer. I build web systems and games, and these days I'm focused on Laravel and Unity.
+           I'm a Full-Stack Software Engineer who develops scalable web systems and interactive games, combining engineering with creativity to build meaningful digital experiences.
         </p>
         <p style="font-family:'Instrument Sans',sans-serif;color:var(--text-body);font-size:1rem;line-height:1.7;max-width:520px;margin-bottom:2rem;">
-            Based in Pangasinan, PH. I love turning rough ideas into things people actually use.
+            Based in PH. I enjoy building things—whether it's a web application that solves a problem or a game that tells a story.
         </p>
         <div class="hero-links" style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;font-family:'Courier New',monospace;font-size:0.8rem;">
             <a href="{{ asset('cv/Resume_JoshuaDaveDelaCruz.pdf') }}" style="color:var(--name-color);text-decoration:none;" download>resume ↗</a>
@@ -69,20 +69,11 @@
         </div>
     </div>
 
-    {{-- Right — glowing circle avatar --}}
+    {{-- Right — plain round avatar --}}
     <div style="flex:1;display:flex;justify-content:center;align-items:center;">
-        <div style="position:relative;width:280px;height:280px;">
-            {{-- Glow ring --}}
-           <div style="position:absolute;inset:-8px;border-radius:50%;border:2px solid #a855f733;box-shadow:0 0 40px #a855f733,0 0 80px #a855f711;"></div>
-            <div style="position:absolute;inset:-16px;border-radius:50%;border:1px solid #a855f711;"></div>
-            {{-- Orbit dots --}}
-            <div class="orbit-dot"></div>
-            <div class="orbit-dot orbit-dot-2"></div>
-            {{-- Avatar placeholder --}}
-            <div style="width:280px;height:280px;border-radius:50%;background:linear-gradient(135deg,var(--grad-1),var(--grad-2));border:2px solid #a855f755;display:flex;align-items:center;justify-content:center;overflow:hidden;">
-                {{-- Replace with <img src="{{ asset('images/avatar.jpg') }}" ...> later --}}
-                <img src="{{ asset('images/sableye.gif') }}" style="width:100%;height:100%;object-fit:cover;">
-            </div>
+        <div style="width:340px;height:340px;border-radius:50%;overflow:hidden;position:relative;">
+            <img src="{{ asset('images/joshua-dark.png') }}" data-dark-src="{{ asset('images/joshua-dark.png') }}" data-light-src="{{ asset('images/joshua-light.png') }}" class="joshua-photo joshua-photo-a" alt="Joshua Dela Cruz" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;position:absolute;inset:0;opacity:1;transition:opacity 0.5s ease;">
+            <img src="{{ asset('images/joshua-dark.png') }}" data-dark-src="{{ asset('images/joshua-dark.png') }}" data-light-src="{{ asset('images/joshua-light.png') }}" class="joshua-photo joshua-photo-b" alt="Joshua Dela Cruz" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;position:absolute;inset:0;opacity:0;transition:opacity 0.5s ease;">
         </div>
     </div>
 
@@ -161,7 +152,7 @@
         </div>
         <div class="bg-card bg-card-hover" style="border-radius:16px;padding:1.75rem;display:flex;gap:1.25rem;align-items:flex-start;transition:all 0.3s;">
             <div style="flex-shrink:0;margin-top:2px;width:48px;height:48px;">
-                <img src="{{ asset('images/research.webp') }}" loading="lazy" decoding="async" width="48" height="48" style="width:100%;height:100%;object-fit:contain;">
+                <img src="{{ asset('images/research.webp') }}" data-dark-src="{{ asset('images/research.webp') }}" data-light-src="{{ asset('images/research-light.webp') }}" class="theme-img" loading="lazy" decoding="async" width="48" height="48" style="width:100%;height:100%;object-fit:contain;">
             </div>
             <div>
                 <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">SikapTala National Competition</h3>
@@ -312,21 +303,21 @@
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;">
         @php
         $experiences = [
-            ['intermed.webp','Intermed LLC Corporation','Lead Developer · 2026 · Hybrid','Developed a full-scale HRIS across 6 modules using Laravel and MySQL. Contributed to system architecture, feature implementation, and team collaboration during internship development.'],
-            ['game.webp','Private Client Project','Freelance · Game Developer','Side-scroll 2D educational game. Designed and developed core gameplay systems and educational content integration.'],
-            ['laptop.png','SQNHS STE Enrollment System','Freelance · Full Stack Developer','Built a school enrollment and grading system for San Quintin National High School\'s STE program using Laravel, Tailwind CSS, and Alpine.js.'],
-            ['laptop.png','SQNHS Repository System','Freelance · Full Stack Developer','Developed a document management system for uploading, organizing, and retrieving school files by year and category.'],
+            ['intermed.webp','intermed-light.webp','Intermed LLC Corporation','Lead Developer · 2026 · Hybrid','Developed a full-scale HRIS across 6 modules using Laravel and MySQL. Contributed to system architecture, feature implementation, and team collaboration during internship development.'],
+            ['game.webp','game-light.webp','Private Client Project','Freelance · Game Developer','Side-scroll 2D educational game. Designed and developed core gameplay systems and educational content integration.'],
+            ['laptop.png','laptop-light.png','SQNHS STE Enrollment System','Freelance · Full Stack Developer','Built a school enrollment and grading system for San Quintin National High School\'s STE program using Laravel, Tailwind CSS, and Alpine.js.'],
+            ['laptop.png','laptop-light.png','SQNHS Repository System','Freelance · Full Stack Developer','Developed a document management system for uploading, organizing, and retrieving school files by year and category.'],
         ];
         @endphp
         @foreach($experiences as $exp)
         <div class="bg-card bg-card-hover" style="border-radius:16px;padding:1.75rem;display:flex;gap:1.25rem;align-items:flex-start;transition:all 0.3s;">
             <div style="flex-shrink:0;margin-top:2px;width:40px;height:40px;">
-                <img src="{{ asset('images/' . $exp[0]) }}" loading="lazy" decoding="async" width="40" height="40" style="width:100%;height:100%;object-fit:contain;">
+                <img src="{{ asset('images/' . $exp[0]) }}" data-dark-src="{{ asset('images/' . $exp[0]) }}" data-light-src="{{ asset('images/' . $exp[1]) }}" class="theme-img" loading="lazy" decoding="async" width="40" height="40" style="width:100%;height:100%;object-fit:contain;">
             </div>
             <div>
-                <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">{{ $exp[1] }}</h3>
-                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--accent);margin-bottom:0.75rem;letter-spacing:0.05em;">{{ $exp[2] }}</p>
-                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--text-secondary);line-height:1.7;">{{ $exp[3] }}</p>
+                <h3 style="font-family:'Instrument Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">{{ $exp[2] }}</h3>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.7rem;color:var(--accent);margin-bottom:0.75rem;letter-spacing:0.05em;">{{ $exp[3] }}</p>
+                <p style="font-family:'Instrument Sans',sans-serif;font-size:0.8rem;color:var(--text-secondary);line-height:1.7;">{{ $exp[4] }}</p>
             </div>
         </div>
         @endforeach

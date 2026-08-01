@@ -228,6 +228,27 @@ section:first-of-type > div:last-child > div > div:last-child { width: 180px !im
             const icon = document.getElementById('themeIcon');
             if (icon) icon.src = next === 'light' ? '{{ asset("images/dark-mode.png") }}' : '{{ asset("images/light-mode_white.png") }}';
             document.getElementById('navLinks').classList.remove('open');
+            updateThemeImages(next);
+            updateJoshuaPhoto(next, true);
+        }
+        function updateThemeImages(theme) {
+            document.querySelectorAll('.theme-img').forEach(img => {
+                const src = theme === 'light' ? img.dataset.lightSrc : img.dataset.darkSrc;
+                if (src) img.src = src;
+            });
+        }
+        function updateJoshuaPhoto(theme, animate) {
+            const a = document.querySelector('.joshua-photo-a');
+            const b = document.querySelector('.joshua-photo-b');
+            if (!a || !b) return;
+            const top = parseFloat(b.style.opacity) > 0.5 ? b : a;
+            const bottom = top === a ? b : a;
+            const src = theme === 'light' ? top.dataset.lightSrc : top.dataset.darkSrc;
+            if (!src) return;
+            if (!animate) { a.src = src; b.src = src; return; }
+            bottom.src = src;
+            bottom.style.opacity = 1;
+            top.style.opacity = 0;
         }
         function toggleMobileNav() {
             document.getElementById('navLinks').classList.toggle('open');
@@ -242,6 +263,8 @@ section:first-of-type > div:last-child > div > div:last-child { width: 180px !im
         window.addEventListener('load', () => {
             const icon = document.getElementById('themeIcon');
             if (icon) icon.src = document.documentElement.getAttribute('data-theme') === 'light' ? '{{ asset("images/dark-mode.png") }}' : '{{ asset("images/light-mode_white.png") }}';
+            updateThemeImages(document.documentElement.getAttribute('data-theme'));
+            updateJoshuaPhoto(document.documentElement.getAttribute('data-theme'), false);
         });
     </script>
 </body>
