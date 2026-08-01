@@ -248,7 +248,10 @@ section:first-of-type > div:last-child > div > div:last-child { width: 180px !im
             if (!animate) { a.src = src; b.src = src; return; }
             bottom.src = src;
             bottom.style.opacity = 1;
+            bottom.style.pointerEvents = 'auto';
             top.style.opacity = 0;
+            top.style.pointerEvents = 'none';
+            setTimeout(() => { top.src = src; }, 500);
         }
         function toggleMobileNav() {
             document.getElementById('navLinks').classList.toggle('open');

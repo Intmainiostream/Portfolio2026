@@ -72,8 +72,8 @@
     {{-- Right — plain round avatar --}}
     <div style="flex:1;display:flex;justify-content:center;align-items:center;">
         <div style="width:340px;height:340px;border-radius:50%;overflow:hidden;position:relative;">
-            <img src="{{ asset('images/joshua-dark.png') }}" data-dark-src="{{ asset('images/joshua-dark.png') }}" data-light-src="{{ asset('images/joshua-light.png') }}" class="joshua-photo joshua-photo-a" alt="Joshua Dela Cruz" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;position:absolute;inset:0;opacity:1;transition:opacity 0.5s ease;">
-            <img src="{{ asset('images/joshua-dark.png') }}" data-dark-src="{{ asset('images/joshua-dark.png') }}" data-light-src="{{ asset('images/joshua-light.png') }}" class="joshua-photo joshua-photo-b" alt="Joshua Dela Cruz" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;position:absolute;inset:0;opacity:0;transition:opacity 0.5s ease;">
+            <img src="{{ asset('images/joshua-dark.png') }}" data-dark-src="{{ asset('images/joshua-dark.png') }}" data-light-src="{{ asset('images/joshua-light.png') }}" class="joshua-photo joshua-photo-a" alt="Joshua Dela Cruz" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;position:absolute;inset:0;opacity:1;pointer-events:auto;transition:opacity 0.5s ease;">
+            <img src="{{ asset('images/joshua-dark.png') }}" data-dark-src="{{ asset('images/joshua-dark.png') }}" data-light-src="{{ asset('images/joshua-light.png') }}" class="joshua-photo joshua-photo-b" alt="Joshua Dela Cruz" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity 0.5s ease;">
         </div>
     </div>
 
