@@ -33,7 +33,7 @@
 
     @php
     $stack = [
-        'Languages' => ['JavaScript','C#','Java','PHP','Dart','Python'],
+        'Languages' => ['JavaScript','C#', 'c++','Java','PHP','Dart','Python'],
         'Frameworks & Tools' => ['Laravel','Flutter','Node.js','Tailwind CSS','MySQL','REST','Unity','Firebase','Figma'],
         'AI Tools' => ['Claude Code','Anthropic','OpenAI','Codex'],
         'Workflow' => ['Git','GitHub','GitLab','JIRA','PyCharm','VS Code','Android Studio','Microsoft Teams'],
