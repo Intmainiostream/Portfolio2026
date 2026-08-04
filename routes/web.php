@@ -16,6 +16,9 @@ Route::get('/projects', function () {
 Route::get('/projects/{slug}', function ($slug) {
     return view('projects.' . $slug);
 });
+Route::get('/linkedin-cover', function () {
+    return view('linkedin-cover');
+});
 Route::get('/professional', function () {
     return view('home');
 });

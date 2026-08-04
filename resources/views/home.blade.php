@@ -47,7 +47,7 @@
             Based in PH. I enjoy building things—whether it's a web application that solves a problem or a game that tells a story.
         </p>
         <div class="hero-links" style="display:flex;gap:1.25rem;align-items:center;flex-wrap:wrap;font-family:'Courier New',monospace;font-size:0.8rem;">
-            <a href="{{ asset('cv/Resume_JoshuaDaveDelaCruz.pdf') }}" style="color:var(--name-color);text-decoration:none;" download>resume ↗</a>
+            <a href="{{ asset('cv/Resume_JoshuaDaveDelaCruz.pdf') }}" style="color:var(--name-color);text-decoration:none;" download="Resume_JoshuaDaveDelaCruz_2026.pdf">resume - 2026 ↗</a>
             <a href="https://github.com/Intmainiostream" target="_blank" style="color:var(--text-secondary);text-decoration:none;">github ↗</a>
             <a href="https://linkedin.com/in/joshua-dev-cruzz" target="_blank" style="color:var(--text-secondary);text-decoration:none;">linkedin ↗</a>
             <a href="#" onclick="document.getElementById('emailModal').style.display='flex';return false;" style="color:var(--text-secondary);text-decoration:none;">email</a>
